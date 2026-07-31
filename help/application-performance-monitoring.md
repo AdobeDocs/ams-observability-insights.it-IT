@@ -1,23 +1,23 @@
 ---
-title: Monitoraggio delle prestazioni delle applicazioni (APM) con Synoptryx
-description: Utilizza il plug-in Synoptryx APM per tracciare le transazioni di AEM, monitorare la JVM, analizzare le transazioni e controllare le tracce delle transazioni e i servizi esterni su AEM Managed Services.
+title: Monitoraggio delle prestazioni delle applicazioni (APM) con  [!DNL Synoptryx]
+description: Utilizza il plug-in APM  [!DNL Synoptryx]  per tracciare le transazioni AEM, monitorare la JVM, analizzare le transazioni e controllare le tracce delle transazioni e i servizi esterni in AEM Managed Services.
 feature: Operations
 role: Admin
-source-git-commit: 883b68e3bc57ba6b55559560a967a6dbc553262a
+source-git-commit: 12876ba185fd6d155f02639fba9601a3616c7e90
 workflow-type: tm+mt
-source-wordcount: '1089'
+source-wordcount: '1078'
 ht-degree: 5%
 
 ---
 
 
-# Monitoraggio delle prestazioni delle applicazioni (APM) con Synoptryx {#application-performance-monitoring}
+# Monitoraggio delle prestazioni delle applicazioni (APM) con [!DNL Synoptryx] {#application-performance-monitoring}
 
-Synoptryx Application Performance Monitoring (APM) offre prestazioni insight in tempo reale e cronologiche per Adobe Experience Manager (AEM) e l’esperienza dell’utente finale. Traccia delle transazioni, grafici e report end-to-end forniscono visibilità sul comportamento dell&#39;applicazione fino al livello di codice Java.
+Il monitoraggio delle prestazioni delle applicazioni (APM) di [!DNL Synoptryx] fornisce dati cronologici e in tempo reale di insight nelle prestazioni di Adobe [!DNL Experience Manager] (AEM) e nell&#39;esperienza dell&#39;utente finale. Traccia delle transazioni, grafici e report end-to-end forniscono visibilità sul comportamento dell&#39;applicazione fino al livello di codice Java.
 
-## Plug-in Managed Services Synoptryx APM {#apm-plugin}
+## Plug-in APM di Managed Services [!DNL Synoptryx] {#apm-plugin}
 
-AEM funziona come applicazione Java su Jetty con moduli OSGi Apache Felix, basati su Apache Sling e Jackrabbit Oak. Adobe Managed Services, AEM Engineering e Synoptryx Engineering hanno sviluppato congiuntamente strumenti personalizzati per gli ambienti Managed Services.
+AEM funziona come applicazione Java su Jetty con moduli OSGi Apache Felix, basati su Apache Sling e Jackrabbit Oak. Adobe Managed Services, AEM Engineering e [!DNL Synoptryx] Engineering hanno sviluppato congiuntamente strumenti personalizzati per gli ambienti Managed Services.
 
 Tale strumentazione raccoglie:
 
@@ -29,7 +29,7 @@ Tale strumentazione raccoglie:
 
 ![Visualizzazione traccia APM Synoptryx che mostra gli intervalli dei componenti nidificati di AEM e la sequenza temporale di esecuzione per una richiesta di pagina](assets/image19.png)
 
-## Utilizzo di Synoptryx APM {#using-apm}
+## Utilizzo di [!DNL Synoptryx] APM {#using-apm}
 
 Utilizzare APM per individuare i problemi dell&#39;applicazione prima che interessino gli utenti finali. Autore e Pubblicazione condividono una base di codice ma sono monitorati come **applicazioni APM separate** in modo da poter analizzare ogni livello in modo indipendente.
 
@@ -38,7 +38,7 @@ Ogni ambiente Managed Services include:
 - Un’applicazione APM per l’authoring
 - Un&#39;applicazione APM per la pubblicazione
 
-Selezionare il nome di un&#39;applicazione in Synoptryx APM per aprirne la dashboard di panoramica e monitoraggio.
+Selezionare il nome di un&#39;applicazione nell&#39;APM [!DNL Synoptryx] per aprire la relativa dashboard di panoramica e monitoraggio.
 
 ![Elenco di applicazioni Synoptryx APM che mostra le applicazioni Author e Publish](assets/image1a.png)
 
@@ -70,7 +70,7 @@ Il dashboard è organizzato in sezioni espandibili che raggruppano le metriche d
 
 ### Descrizione
 
-La sezione **Panoramica** presenta indicatori prestazioni chiave (KPI) di alto livello che riepilogano lo stato corrente dell&#39;applicazione monitorata.
+La sezione **[!UICONTROL Panoramica]** presenta indicatori prestazioni chiave (KPI) di alto livello che riepilogano lo stato corrente dell&#39;applicazione monitorata.
 
 Questi KPI forniscono un riepilogo immediato dell’attività dell’applicazione, della velocità effettiva, del successo delle richieste e dell’esperienza utente complessiva.
 

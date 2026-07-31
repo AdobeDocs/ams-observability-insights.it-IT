@@ -1,11 +1,11 @@
 ---
-title: Monitoraggio dell'infrastruttura con Synoptryx
-description: Utilizzare il monitoraggio dell'infrastruttura Synoptryx per esaminare le metriche di sistema, rete, processo e storage a livello di host per l'ingombro di AEM Managed Services.
+title: Monitoraggio dell'infrastruttura con  [!DNL Synoptryx]
+description: Utilizza  [!DNL Synoptryx] Monitoraggio dell'infrastruttura per esaminare le metriche di sistema, rete, processo e archiviazione a livello di host per l'ingombro di AEM Managed Services.
 feature: Operations
 role: Admin
-source-git-commit: 261f6fac681c000ea6cbbdf403b144f00ab98326
+source-git-commit: 12876ba185fd6d155f02639fba9601a3616c7e90
 workflow-type: tm+mt
-source-wordcount: '1110'
+source-wordcount: '1107'
 ht-degree: 7%
 
 ---
@@ -36,7 +36,7 @@ Il dashboard include i seguenti pannelli di monitoraggio:
 
 ### Descrizione
 
-Nel pannello **Utilizzo CPU host** viene visualizzata la percentuale di risorse CPU attualmente utilizzate dal sistema operativo e da tutti i processi in esecuzione nel tempo.
+Nel pannello **[!UICONTROL Utilizzo CPU host]** viene visualizzata la percentuale di risorse CPU attualmente utilizzate dal sistema operativo e da tutti i processi in esecuzione nel tempo.
 
 Questa metrica rappresenta l&#39;utilizzo complessivo di CPU nell&#39;host e fornisce una visualizzazione della serie temporale dell&#39;attività del processore.
 
@@ -75,7 +75,7 @@ Il pannello riepiloga l’utilizzo di CPU utilizzando tre valori:
 
 ### Descrizione
 
-Il pannello **I/O disco host** visualizza la velocità effettiva di archiviazione per le operazioni di lettura e scrittura su disco eseguite dall&#39;host.
+Il pannello **[!UICONTROL I/O disco host]** visualizza la velocità effettiva di archiviazione per le operazioni di lettura e scrittura su disco eseguite dall&#39;host.
 
 Il grafico presenta due serie temporali indipendenti che rappresentano i dati trasferiti tra il sistema operativo e i dispositivi di storage.
 
@@ -113,7 +113,7 @@ L&#39;unità visualizzata viene ridimensionata automaticamente in base alla velo
 
 ### Descrizione
 
-Il pannello **I/O di rete host** visualizza il volume di traffico di rete trasmesso e ricevuto dall&#39;host nel tempo.
+Il pannello **[!UICONTROL I/O di rete host]** visualizza il volume di traffico di rete trasmesso e ricevuto dall&#39;host nel tempo.
 
 Il grafico misura la velocità con cui i dati scorrono attraverso le interfacce di rete e fornisce visibilità sul consumo della larghezza di banda della rete.
 Questa metrica rappresenta il throughput di rete aggregato.
@@ -156,7 +156,7 @@ a seconda del volume di traffico osservato.
 
 ### Descrizione
 
-Nel pannello **Attesa I/O di CPU** viene visualizzata la percentuale di tempo di CPU impiegato per l&#39;attesa del completamento delle operazioni di input/output.
+Nel pannello **[!UICONTROL Attesa I/O di CPU]** viene visualizzata la percentuale di tempo di CPU impiegato per l&#39;attesa del completamento delle operazioni di input/output.
 
 Questa metrica rappresenta il tempo di inattività del processore che si verifica perché i processi attivi vengono bloccati durante l&#39;attesa di dispositivi di storage o altre operazioni di I/O.
 
@@ -193,7 +193,7 @@ Il grafico visualizza il modo in cui l’attesa di I/O cambia nel tempo.
 
 ### Descrizione
 
-Il pannello **Utilizzo archiviazione** visualizza la percentuale complessiva di capacità di archiviazione attualmente utilizzata nell&#39;host monitorato.
+Il pannello **[!UICONTROL Utilizzo archiviazione]** visualizza la percentuale complessiva di capacità di archiviazione attualmente utilizzata nell&#39;host monitorato.
 
 Il grafico fornisce una visualizzazione cronologica dell&#39;utilizzo della capacità del file system durante l&#39;intervallo di tempo selezionato.
 
@@ -219,7 +219,7 @@ Il grafico fornisce una visualizzazione cronologica dell&#39;utilizzo della capa
 
 ### Descrizione
 
-Nel pannello **Utilizzo disco** viene visualizzato l&#39;utilizzo dello spazio di archiviazione per ogni file system o dispositivo di archiviazione montato.
+Nel pannello **[!UICONTROL Utilizzo disco]** viene visualizzato l&#39;utilizzo dello spazio di archiviazione per ogni file system o dispositivo di archiviazione montato.
 
 Ogni riga corrisponde a un dispositivo a blocchi o a una partizione montata specifica e riporta la percentuale di spazio attualmente in uso.
 
@@ -252,7 +252,7 @@ Ogni voce include:
 
 ### Descrizione
 
-Nel pannello **Media carico CPU host** vengono visualizzate le medie del carico del sistema Linux su tre finestre di tempo continue.
+Nel pannello **[!UICONTROL Media carico CPU host]** vengono visualizzate le medie del carico del sistema Linux su tre finestre di tempo continue.
 
 A differenza dell&#39;utilizzo di CPU, la media di carico rappresenta il numero medio di processi che sono in esecuzione o in attesa della pianificazione CPU o del completamento di I/O.
 
@@ -293,7 +293,7 @@ Per ogni metrica della media di carico:
 
 ### Descrizione
 
-Il pannello **Utilizzo memoria host** visualizza la percentuale di memoria di sistema fisica attualmente allocata dal sistema operativo.
+Il pannello **[!UICONTROL Utilizzo memoria host]** visualizza la percentuale di memoria di sistema fisica attualmente allocata dal sistema operativo.
 
 Questa metrica rappresenta l&#39;utilizzo complessivo della RAM in tutti i processi in esecuzione, memoria kernel, buffer e cache.
 
