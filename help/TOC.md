@@ -3,9 +3,9 @@ cloud: Experience Cloud
 user-guide-title: Informazioni sull’osservabilità di Adobe Managed Services
 breadcrumb-title: Observability Insights
 user-guide-description: Documentazione di Adobe Managed Services Observability Insights
-source-git-commit: 269d0b7e9895077b0ae7a573bdad5408ca15e612
+source-git-commit: 11251645ac8e11559209e0b421cc2cf4f9297c10
 workflow-type: tm+mt
-source-wordcount: '41'
+source-wordcount: '43'
 ht-degree: 9%
 
 ---
@@ -20,4 +20,5 @@ ht-degree: 9%
 - [Utilizzare Observability Insights](/help/use-observability-insights.md)
 - [Applicazioni](/help/applications.md)
 - [Host](/help/hosts.md)
+- [Documentazione API](/help/api.md)
 - [Domande frequenti](/help/troubleshooting/common-questions.md)
