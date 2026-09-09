@@ -15,7 +15,7 @@ L’API pubblica di Observability Insights consente di estrarre i propri dati di
 
 > Sostituisci `{{API_BASE_URL}}` in questo documento con l&#39;host API dell&#39;istanza Observability Insights, ad esempio `https://insights.adobecqms.net/`.
 
----
+&#x200B;---
 
 ## &#x200B;1. Ottenere una chiave API
 
@@ -48,7 +48,7 @@ La sezione Chiavi API elenca tutte le chiavi create, inclusa l’organizzazione,
 - Ruota le chiavi periodicamente e revoca tutte le chiavi non più in uso.
 - Se una chiave è compromessa, revocala immediatamente da **Impostazioni organizzazione → Chiavi API** e generane una sostitutiva.
 
----
+&#x200B;---
 
 ## &#x200B;2. Autenticazione delle richieste
 
@@ -60,7 +60,7 @@ Authorization: Bearer synx_9pQ2v6f1WYbLZk3n0aRtEo4jXcHsVmDgUiPq7B8l1yc
 
 Le richieste senza una chiave valida o con una chiave scaduta/revocata ricevono `401 Unauthorized`. Gli accessi di sessione (cookie/token del browser) sono **non** accettati in questa API.
 
----
+&#x200B;---
 
 ## &#x200B;3. Concetti di base
 
@@ -111,7 +111,7 @@ Gli errori vengono restituiti come JSON con un campo `error` e, in genere, un `m
 | `502 Bad Gateway` | Query upstream non riuscita. Riprovare in sicurezza |
 | `503 Service Unavailable` | Back-end dei dati temporaneamente non disponibile |
 
----
+&#x200B;---
 
 ## &#x200B;4. Endpoint
 
@@ -347,7 +347,7 @@ curl -s "{{API_BASE_URL}}/public/v1/pages?tenant_id=<tenant_id>&limit=50" \
 }
 ```
 
----
+&#x200B;---
 
 ## &#x200B;5. Quali funzioni non svolge questa API
 
@@ -355,7 +355,7 @@ curl -s "{{API_BASE_URL}}/public/v1/pages?tenant_id=<tenant_id>&limit=50" \
 - **Nessuna query tra tenant.** Ogni richiesta ha l&#39;ambito esatto di un `tenant_id`.
 - **Nessun accesso in scrittura.** L’API pubblica è di sola lettura.
 
----
+&#x200B;---
 
 ## &#x200B;6. Supporto
 
