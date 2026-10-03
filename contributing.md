@@ -17,7 +17,7 @@ Questo progetto ha adottato il [Codice di condotta di Adobe Open Source](code-of
 
 ## Documentazione della Guida per i collaboratori
 
-Consulta la [Guida per i collaboratori](https://experienceleague.adobe.com/docs/contributor/contributor-guide/introduction.html).
+Consulta la [Guida per i collaboratori](https://experienceleague.adobe.com/docs/contributor/contributor-guide/introduction.html?lang=it).
 
 ## Come contribuire
 
@@ -58,4 +58,4 @@ Il team di documentazione è soddisfatto di qualsiasi contributo e, se inserito 
 
 ## Ulteriori informazioni
 
-Per ulteriori informazioni su come utilizzare la piattaforma di authoring GitHub, consulta la [Guida per i collaboratori alla documentazione di Adobe](https://experienceleague.adobe.com/docs/contributor/contributor-guide/introduction.html).
+Per ulteriori informazioni su come utilizzare la piattaforma di authoring GitHub, consulta la [Guida per i collaboratori alla documentazione di Adobe](https://experienceleague.adobe.com/docs/contributor/contributor-guide/introduction.html?lang=it).
