@@ -1,16 +1,20 @@
 ---
-source-git-commit: 263ba9e9b3eb1c6e4dd253ca03bd0ce8954c588b
+title: Query manuale
+description: Utilizza le formule di query SQL per analizzare la telemetria di applicazioni e infrastrutture in Observability Insights.
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '565'
+source-wordcount: '580'
 ht-degree: 0%
 ---
+
 ## Query manuale {#query-cookbook}
 
 Il manuale è una libreria di query pronte all’uso, raggruppate per argomento. Ogni query è preceduta dal tipo di grafico più adatto, in **bold**. Le clausole temporali vengono ignorate perché la finestra è controllata dal selettore ore.
 
 **In questo documento:** [10.1 Individuazione dati](#101-data-discovery) · [10.2 Throughput](#102-throughput) · [10.3 Latenza](#103-latency) · [10.4 Errori](#104-errors) · [10.5 Apdex](#105-apdex--user-experience) · [10.6 Servizi e host](#106-services-hosts--instances) · [10.7 Dipendenze](#107-downstream-dependencies) · [10.8 AEM](#108-aem-adobe-experience-manager) · [10.9 Infrastruttura](#109-infrastructure) · [10.10 JVM](#1010-jvm--runtime)
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > Sostituisci valori di esempio come `'checkout'` o `'web-publish-01'` con valori reali del tenant. Le query di individuazione dati elencate di seguito.
 
 ### Individuazione dei dati
@@ -385,7 +389,8 @@ SELECT average(value) AS cpu FROM CpuUtilization FACET host TIMESERIES AUTO
 SELECT average(value) AS userPct FROM CpuUserPercent TIMESERIES AUTO
 ```
 
-&#x200B;> [!NOTE]
+>[!NOTE]
+>
 > SQL legge un&#39;entità per query, pertanto user/system/iowait/steal necessita di quattro widget affiancati (vedi [blueprint 11.6](#116-infrastructure-capacity-board) W7-W10). Una Formula li comprime in un numero, non in quattro serie.
 
 **Barra** — CPU p95 per host:

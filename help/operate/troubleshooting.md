@@ -1,9 +1,12 @@
 ---
-source-git-commit: ec98f6bd132cadaba1da7c4fb727d7e031790645
+title: Risoluzione di problemi
+description: Risolvere i problemi relativi a query SQL, grafici e dashboard in Observability Insights.
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '327'
+source-wordcount: '337'
 ht-degree: 5%
 ---
+
 ## Risoluzione di problemi {#troubleshooting}
 
 I messaggi di errore vengono visualizzati nell&#39;editor quando **Convalida** o **Esegui** una query e nel widget stesso in un dashboard. Trova il messaggio nella prima colonna.

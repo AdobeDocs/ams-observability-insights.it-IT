@@ -1,9 +1,12 @@
 ---
-source-git-commit: 263ba9e9b3eb1c6e4dd253ca03bd0ce8954c588b
+title: 'Esercitazione 3: Migliorare il dashboard'
+description: Crea dashboard con variabili, formule e più widget in Observability Insights.
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '888'
+source-wordcount: '902'
 ht-degree: 3%
 ---
+
 ## Esercitazione 3: Migliorare il dashboard {#tutorial-3-advance-your-dashboarding}
 
 In questa esercitazione verranno creati i componenti di un dashboard di livello produzione: punteggi dell’esperienza utente, tassi di conteggio, raggruppamento di maiuscole e minuscole, istogrammi, tessere KPI con soglie, sezioni, widget di formule e variabili.
@@ -38,7 +41,8 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS writeBytesPerSec FROM DiskWriteRate FACET host, device TIMESERIES AUTO LIMIT 10
 ```
 
-&#x200B;> [!WARNING]
+>[!WARNING]
+>
 > Effettua sempre il facet `rate()` per `host` (e per `device` per i dischi) o filtra su un host. Senza questo, le letture da host diversi si mescolano tra loro e il risultato non ha senso.
 
 Per ottenere una percentuale di **richiesta** dalle tracce, conta le richieste in bucket fissi. Questo fornisce richieste al minuto:
@@ -146,7 +150,8 @@ Regole per le query di formula:
 | Una metrica per ciascuno | Ogni query restituisce esattamente un aggregato e nessun `FACET` |
 | Dati mancanti | Un valore mancante o una divisione per zero produce un punto vuoto, mai `Infinity` o `NaN` |
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > Utilizzare `TIMESERIES AUTO` in ogni query di una formula di serie temporali. Poiché le query condividono una finestra, vengono sempre risolte con la stessa dimensione di bucket.
 
 ### Rendi le dashboard riutilizzabili con le variabili
@@ -187,8 +192,9 @@ SELECT count(*) FROM Transaction FACET service LIMIT 200
 
 Le opzioni si aggiornano quando cambia il tenant o il selettore ora e vengono ordinate alfabeticamente. Quando la selezione corrente non è più valida, il primo valore (selezione singola) o tutti i valori (selezione multipla) vengono selezionati automaticamente. La query di una variabile non può fare riferimento ad altre variabili.
 
-&#x200B;> [!WARNING]
-> **Limitazione della compilazione corrente.** La sostituzione avviene nella griglia del dashboard, ma l&#39;anteprima **Aggiungi widget** e il **controllo di salvataggio lato server** ricevono il token `{{name}}` non elaborato e lo rifiutano con _carattere imprevisto &#39;&lbrace;&#39;_. In pratica:
+>[!WARNING]
+>
+> **Limitazione della compilazione corrente.** La sostituzione avviene nella griglia del dashboard, ma l&#39;anteprima **Aggiungi widget** e il **controllo di salvataggio lato server** ricevono il token `{{name}}` non elaborato e lo rifiutano con `Unexpected character '{'`. In pratica:
 >
 > - `{{variables}}` in **titoli widget** e **widget di testo** funzionano in modo end-to-end.
 > - `{{variables}}` all&#39;interno di **widget SQL** esegue correttamente il rendering dopo un **Import**, ma il dashboard non può essere **save** mentre tali widget esistono.

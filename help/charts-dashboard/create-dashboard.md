@@ -1,17 +1,20 @@
 ---
-source-git-commit: 05ed98c07602488843c52cd262af2d8cc204fef1
+title: Creare un dashboard
+description: Scopri come creare, configurare, salvare e condividere dashboard di Observability Insights.
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '1117'
+source-wordcount: '1129'
 ht-degree: 1%
 ---
-### Creare un dashboard, passo dopo passo
 
-#### Passaggio 1: prima di iniziare
+## Creare un dashboard, passo dopo passo
+
+### Passaggio 1: prima di iniziare
 
 - **Selezionare un singolo cliente** nel commutatore tenant. **Crea dashboard** è disabilitato mentre **Sono selezionati tutti gli account**. Impossibile eseguire SQL con il tenant demo.
 - **Ruoli.** Chiunque abbia accesso al dashboard può aggiungere, modificare e salvare widget. La creazione o la modifica di **variabili** e l&#39;analisi della query di un widget sono limitate a **amministratori organizzazione** e **amministratori privilegiati**.
 
-#### Passaggio 2: creare il dashboard
+### Passaggio 2: creare il dashboard
 
 1. Apri **Dashboard** nel menu di navigazione a sinistra.
 2. Fai clic su **Crea dashboard**.
@@ -26,7 +29,7 @@ ht-degree: 1%
 
 4. Immetti un **nome** e conferma. Viene visualizzata l’area di lavoro del dashboard.
 
-#### Passaggio 3: conoscere l’area di lavoro
+### Passaggio 3: conoscere l’area di lavoro
 
 | Area | Controlli |
 | ---------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -36,10 +39,11 @@ ht-degree: 1%
 | **Griglia** | 12 colonne. Trascinate i widget dal grip, ridimensionate dall&#39;angolo (minimo 2×2). |
 | **Intestazione widget** (al passaggio del mouse) | Scarica CSV, scarica PNG, modifica, duplica, rimuovi, trascina handle |
 
-&#x200B;> [!IMPORTANT]
+>[!IMPORTANT]
+>
 > **Il salvataggio è esplicito.** Modifiche al layout, nuovi widget, schede e variabili rimangono nel browser fino a quando non fai clic su **Salva**. Il pulsante mostra _Salvataggio in corso... → salvato_ o _Salvataggio non riuscito_ (vedere [Risoluzione dei problemi](#troubleshooting)).
 
-#### Passaggio 4: aggiungere un widget
+### Passaggio 4: aggiungere un widget
 
 Fare clic su **Aggiungi widget**. La finestra di dialogo dispone di tre modalità: **Query singola**, **Formula** e **Testo**. Inoltre, dispone di un selettore del tempo specifico, che consente di visualizzare l’anteprima del widget su qualsiasi finestra.
 
@@ -60,10 +64,11 @@ Fare clic su **Aggiungi widget**. La finestra di dialogo dispone di tre modalit�
 3. Utilizza il pannello **Guida query** per sfogliare entità, attributi ed esempi.
 4. Fare clic su **Esegui query**. _`<Entity>`query è valida_, un&#39;anteprima live e un riepilogo (`N rows · N time points · N groups`). Viene visualizzato un avviso di _Sparse series_ quando sono presenti meno di tre punti temporali.
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > Il Generatore di copre le query più comuni. Passa a SQL per `apdex`, `percentage`, `rate`, `FILTER`, più aggregati, `OR`, `IN`, diversi facet o `ORDER BY`.
 
-#### Passaggio 5: configurare l’aspetto
+### Passaggio 5: configurare l’aspetto
 
 | Campo | Note |
 | --------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -72,11 +77,11 @@ Fare clic su **Aggiungi widget**. La finestra di dialogo dispone di tre modalit�
 | **Unità** | Facoltativo; fino a 40 caratteri (`ms`, `%`, `req/s`, `MB`, `bytes`). Lasciare vuoto il campo per utilizzare l&#39;unità dedotta (ad esempio `ms` per `duration`, `%` per `CpuUtilization`). |
 | **Soglie colore** | Solo widget numero. Fino a 10 bande del modulo _a partire da `value` → Verde/Giallo/Rosso_. La banda corrispondente più alta vince. |
 
-#### Passaggio 6: salva il widget, quindi la dashboard
+### Passaggio 6: salva il widget, quindi la dashboard
 
 **Il widget di salvataggio** è abilitato solo dopo che un&#39;esecuzione ha restituito dati. I nuovi widget sono costituiti da 6 colonne × 3 righe e sono compressi due per riga. Disporre i file, quindi fare clic su **Salva** nella barra superiore.
 
-### Scegli il grafico a destra
+## Scegli il grafico a destra
 
 | Forma Query | Grafico Migliore | Perché |
 | ------------------------------------------------- | ------------------- | ---------------------------------------------- |
@@ -89,17 +94,18 @@ Fare clic su **Aggiungi widget**. La finestra di dialogo dispone di tre modalit�
 
 Quando la singola riga di un widget Numero contiene un valore di testo (ad esempio `latest(host)`), il widget lo mostra come sottotitolo.
 
-### Widget di testo: note e intestazioni di sezione
+## Widget di testo: note e intestazioni di sezione
 
 **Aggiungi widget → testo**:
 
 - **Nota**: testo normale (fino a 4.000 caratteri, righe vuote mantenute). Utilizzalo per collegamenti runbook, proprietari e definizioni SLO. Rendering di `{{variables}}` eseguito.
 - **Intestazione sezione**: segno di spunta _Imposta come intestazione sezione_. Si estende per tutta la larghezza e la sua freccia comprime ogni widget sotto di esso, fino all&#39;intestazione di sezione successiva. Utilizzalo per raggruppamenti come **PUBLISH**, **AUTHOR** e **DISPATCHER**.
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > I titoli dei widget che terminano in `- PUBLISH` o `- AUTHOR` ricevono un colore sottile che facilita la scansione delle dashboard di AEM per livello.
 
-### Selettore ora
+## Selettore ora
 
 - Imposta la finestra per **ogni** widget e per le opzioni delle variabili basate su query.
 - Sostituisce `SINCE` / `UNTIL` nelle query widget.
@@ -108,18 +114,19 @@ Quando la singola riga di un widget Numero contiene un valore di testo (ad esemp
 - Il sottotitolo di ogni widget mostra la finestra effettivamente applicata, ad esempio _Da 1 ora fa_.
 - I risultati vengono memorizzati nella cache per 30 secondi. Utilizza il pulsante di aggiornamento per forzare una nuova esecuzione.
 
-### Variabili
+## Variabili
 
 Le variabili consentono a un dashboard di gestire più contesti, ad esempio un servizio, un ambiente o una soglia alla volta. Sono trattate in modo approfondito nel [tutorial 3](#87-make-dashboards-reusable-with-variables).
 
-&#x200B;> [!WARNING]
-> **Limitazione nota nella build corrente:** `{{variables}}` funziona nei widget **titoli** e **widget di testo**. All&#39;interno del widget **SQL**, viene eseguito il rendering nel dashboard, ma l&#39;anteprima **Aggiungi widget** e la verifica **Salva** lato server rifiutano il token `{{name}}` non elaborato con _Carattere imprevisto &#39;&lbrace;&#39;_. Finché questo non sarà risolto, usa valori letterali nelle query widget e usa **Duplica** per creare varianti.
+>[!WARNING]
+>
+> **Limitazione nota nella build corrente:** `{{variables}}` funziona nei widget **titoli** e **widget di testo**. All&#39;interno del widget **SQL**, viene eseguito il rendering nel dashboard, ma l&#39;anteprima **Aggiungi widget** e la verifica **Salva** lato server rifiutano il token `{{name}}` non elaborato con `Unexpected character '{'`. Finché questo non sarà risolto, usa valori letterali nelle query widget e usa **Duplica** per creare varianti.
 
-### Widget formula
+## Widget formula
 
 Una formula combina aritmeticamente 2-6 query SQL denominate, ad esempio `(errors / total) * 100`. Utilizzane uno quando un KPI richiede più di una query, ad esempio un rapporto, uno spazio di crescita, una somma di tassi o una velocità di masterizzazione. Consulta [Esercitazione 3](#86-combine-queries-with-formula-widgets).
 
-### Condivisione, esportazione e importazione
+## Condivisione, esportazione e importazione
 
 | Azione | Effetto |
 | ------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -128,10 +135,11 @@ Una formula combina aritmeticamente 2-6 query SQL denominate, ad esempio `(error
 | **Importa** | Carica un&#39;esportazione JSON **nel dashboard aperto**, sostituendo le relative schede e variabili. Quindi fai clic su **Salva**. Suggerimento: crea prima un dashboard vuoto, quindi importalo all’interno. |
 | **CSV / PNG** | Download per widget dall&#39;intestazione del widget. |
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > Le funzioni Esporta e Importa consentono di usare dashboard per il controllo delle versioni in Git e di promuovere un dashboard da un cliente all’altro. Il formato del file è descritto nell&#39;[appendice](#142-export-file-format).
 
-### Suggerimenti per le prestazioni di dashboard e grafici
+## Suggerimenti per le prestazioni di dashboard e grafici
 
 - **Utilizzare tabelle per set di risultati di grandi dimensioni** anziché barre o righe di molte serie.
 - **Dividi dashboard occupati in schede.** Vengono eseguiti solo i widget della scheda visibile.

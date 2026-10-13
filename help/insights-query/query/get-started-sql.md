@@ -1,10 +1,13 @@
 ---
-source-git-commit: d3cd77e213674587152d6d33efa65328f420a547
+title: Introduzione a SQL
+description: Scopri come eseguire query sulla telemetria Observability Insights utilizzando SQL.
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '671'
+source-wordcount: '684'
 ht-degree: 1%
 ---
-# Inizia
+
+# Introduzione
 
 **Linguaggio query di Adobe Observability Insights (SQL)**: consente di eseguire query, grafici e dashboard della telemetria in Adobe Observability Insights.
 
@@ -13,7 +16,8 @@ ht-degree: 1%
 | **Si applica a** | Interfaccia utente approfondimenti → **Esplora** e **Dashboard** (dashboard personalizzati) |
 | **Pubblico** | Ingegneri, SRE e utenti esperti che conoscono SQL |
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > Ogni blocco di codice contrassegnato `sql` è una query SQL che è possibile incollare direttamente in **Esplora → SQL** o in **Dashboard → Aggiungi widget → SQL**.
 
 ## Introduzione a SQL: lingua della telemetria {#get-started-with-sql-the-language-of-your-telemetry}
@@ -38,7 +42,8 @@ Usa SQL per:
 
 SQL supporta sia **query evento**, che restituiscono singole righe di richiesta, sia **query aggregate**, che restituiscono totali, percentili, percentuali, raggruppamenti e serie temporali.
 
-&#x200B;> [!TIP]
+>[!TIP]
+>
 > I modelli in **Dashboard → Crea dashboard** sono interamente generati da SQL. Apri qualsiasi widget modello con l’icona a forma di matita per visualizzare la query corrispondente e imparare da essa.
 
 ### Elementi su cui è possibile eseguire query
@@ -52,7 +57,8 @@ SQL può eseguire query su quattro famiglie di dati. L&#39;elenco completo si tr
 | **Metriche generiche** | `MetricGauge`, `MetricSum` | Qualsiasi metrica OpenTelemetry per nome, individuazione metrica |
 | **Composizione span preaggregata** | `SpanBreakdown` | Quali operazioni figlio costituiscono una transazione |
 
-&#x200B;> [!NOTE]
+>[!NOTE]
+>
 > I registri, le definizioni degli avvisi e le relazioni di inventario non sono disponibili.
 
 ### Dove utilizzare SQL

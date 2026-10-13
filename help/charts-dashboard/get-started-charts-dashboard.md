@@ -1,9 +1,12 @@
 ---
-source-git-commit: 05ed98c07602488843c52cd262af2d8cc204fef1
+title: Introduzione a grafici e dashboard
+description: Scopri come visualizzare i dati di Observability Insights con grafici e dashboard.
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '292'
-ht-degree: 3%
+source-wordcount: '309'
+ht-degree: 2%
 ---
+
 ## Grafici e dashboard: visualizzazione dei dati {#charts-and-dashboards-visualizing-your-data}
 
 Le query consentono di trovare le informazioni necessarie. Grafici e dashboard rendono tali informazioni utili per la tua organizzazione. In questo documento viene illustrato come i risultati SQL diventano grafici e come creare, organizzare e condividere dashboard.

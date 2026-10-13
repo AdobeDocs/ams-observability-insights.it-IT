@@ -1,9 +1,12 @@
 ---
-source-git-commit: ec98f6bd132cadaba1da7c4fb727d7e031790645
+title: Prestazioni
+description: Migliora le prestazioni di query, grafici e dashboard in Observability Insights.
+source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
 workflow-type: tm+mt
-source-wordcount: '217'
-ht-degree: 2%
+source-wordcount: '227'
+ht-degree: 3%
 ---
+
 ## Prestazioni {#performance}
 
 Ogni query viene eseguita con un timeout di 15 secondi e un budget di lettura dei byte. Questo documento spiega come Observability Insights accelera automaticamente le query e come progettare dashboard che rimangano veloci in qualsiasi intervallo di tempo.
