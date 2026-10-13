@@ -36,7 +36,7 @@ ht-degree: 1%
 | **Griglia** | 12 colonne. Trascinate i widget dal grip, ridimensionate dall&#39;angolo (minimo 2×2). |
 | **Intestazione widget** (al passaggio del mouse) | Scarica CSV, scarica PNG, modifica, duplica, rimuovi, trascina handle |
 
-> [!IMPORTANT]
+&#x200B;> [!IMPORTANT]
 > **Il salvataggio è esplicito.** Modifiche al layout, nuovi widget, schede e variabili rimangono nel browser fino a quando non fai clic su **Salva**. Il pulsante mostra _Salvataggio in corso... → salvato_ o _Salvataggio non riuscito_ (vedere [Risoluzione dei problemi](#troubleshooting)).
 
 #### Passaggio 4: aggiungere un widget
@@ -60,7 +60,7 @@ Fare clic su **Aggiungi widget**. La finestra di dialogo dispone di tre modalit�
 3. Utilizza il pannello **Guida query** per sfogliare entità, attributi ed esempi.
 4. Fare clic su **Esegui query**. _`<Entity>`query è valida_, un&#39;anteprima live e un riepilogo (`N rows · N time points · N groups`). Viene visualizzato un avviso di _Sparse series_ quando sono presenti meno di tre punti temporali.
 
-> [!TIP]
+&#x200B;> [!TIP]
 > Il Generatore di copre le query più comuni. Passa a SQL per `apdex`, `percentage`, `rate`, `FILTER`, più aggregati, `OR`, `IN`, diversi facet o `ORDER BY`.
 
 #### Passaggio 5: configurare l’aspetto
@@ -96,7 +96,7 @@ Quando la singola riga di un widget Numero contiene un valore di testo (ad esemp
 - **Nota**: testo normale (fino a 4.000 caratteri, righe vuote mantenute). Utilizzalo per collegamenti runbook, proprietari e definizioni SLO. Rendering di `{{variables}}` eseguito.
 - **Intestazione sezione**: segno di spunta _Imposta come intestazione sezione_. Si estende per tutta la larghezza e la sua freccia comprime ogni widget sotto di esso, fino all&#39;intestazione di sezione successiva. Utilizzalo per raggruppamenti come **PUBLISH**, **AUTHOR** e **DISPATCHER**.
 
-> [!TIP]
+&#x200B;> [!TIP]
 > I titoli dei widget che terminano in `- PUBLISH` o `- AUTHOR` ricevono un colore sottile che facilita la scansione delle dashboard di AEM per livello.
 
 ### Selettore ora
@@ -112,8 +112,8 @@ Quando la singola riga di un widget Numero contiene un valore di testo (ad esemp
 
 Le variabili consentono a un dashboard di gestire più contesti, ad esempio un servizio, un ambiente o una soglia alla volta. Sono trattate in modo approfondito nel [tutorial 3](#87-make-dashboards-reusable-with-variables).
 
-> [!WARNING]
-> **Limitazione nota nella build corrente:** `{{variables}}` funziona nei widget **titoli** e **widget di testo**. All&#39;interno del widget **SQL**, viene eseguito il rendering nel dashboard, ma l&#39;anteprima **Aggiungi widget** e la verifica **Salva** lato server rifiutano il token `{{name}}` non elaborato con _Carattere imprevisto &#39;{&#39;_. Finché questo non sarà risolto, usa valori letterali nelle query widget e usa **Duplica** per creare varianti.
+&#x200B;> [!WARNING]
+> **Limitazione nota nella build corrente:** `{{variables}}` funziona nei widget **titoli** e **widget di testo**. All&#39;interno del widget **SQL**, viene eseguito il rendering nel dashboard, ma l&#39;anteprima **Aggiungi widget** e la verifica **Salva** lato server rifiutano il token `{{name}}` non elaborato con _Carattere imprevisto &#39;&lbrace;&#39;_. Finché questo non sarà risolto, usa valori letterali nelle query widget e usa **Duplica** per creare varianti.
 
 ### Widget formula
 
@@ -128,7 +128,7 @@ Una formula combina aritmeticamente 2-6 query SQL denominate, ad esempio `(error
 | **Importa** | Carica un&#39;esportazione JSON **nel dashboard aperto**, sostituendo le relative schede e variabili. Quindi fai clic su **Salva**. Suggerimento: crea prima un dashboard vuoto, quindi importalo all’interno. |
 | **CSV / PNG** | Download per widget dall&#39;intestazione del widget. |
 
-> [!TIP]
+&#x200B;> [!TIP]
 > Le funzioni Esporta e Importa consentono di usare dashboard per il controllo delle versioni in Git e di promuovere un dashboard da un cliente all’altro. Il formato del file è descritto nell&#39;[appendice](#142-export-file-format).
 
 ### Suggerimenti per le prestazioni di dashboard e grafici

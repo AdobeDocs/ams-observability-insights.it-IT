@@ -109,7 +109,7 @@ Ogni entità curata esegue il wrapping di una metrica OpenTelemetry con il filtr
 | `JvmCpuRecentUtilization` | CPU del processo JVM | % |         | rollup di 1 minuto |
 | `DispatcherRequestRate` | Richieste HTTP del dispatcher di AEM | req/s | ✔ |                                              |
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > Le metriche della memoria JVM sono riportate **per pool di memoria**, quindi `average(value)` su `JvmHeapUsed` / `JvmHeapLimit` medie tra pool. Utilizzare `FACET host, pool` per una visualizzazione esatta per pool.
 
 ### `SpanBreakdown`: composizione transazione preaggregata

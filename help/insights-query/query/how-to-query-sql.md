@@ -12,7 +12,7 @@ Prima di usare uno strumento, è utile conoscerne il funzionamento. Questo docum
 
 Il modo migliore per utilizzare SQL consiste nell&#39;aprire **Esplora** e provarlo con i propri dati.
 
-> [!TIP]
+&#x200B;> [!TIP]
 > SQL è di sola lettura. Non può modificare o eliminare dati e ogni query ha l’ambito del tuo tenant.
 
 1. **Selezionare un cliente** nel commutatore tenant nella parte superiore dell&#39;app. SQL necessita di un singolo tenant.
@@ -37,7 +37,7 @@ FROM Transaction SELECT count(*) FACET service
 
 In questo modo vengono conteggiate le richieste per servizio, il che mostra quali servizi stanno generando rapporti.
 
-> [!IMPORTANT]
+&#x200B;> [!IMPORTANT]
 > **Individua prima della compilazione.** La disponibilità degli attributi dipende dalla strumentazione di ciascun servizio. Eseguire le [query di individuazione](#101-data-discovery) su un nuovo tenant per vedere quali servizi, host, attributi e metriche contengono effettivamente i dati.
 
 ### Esecuzione di una query
@@ -87,5 +87,5 @@ Ogni query restituisce una delle quattro forme. La forma determina quali grafici
 | **Esplora** | Selettore temporale globale. `SINCE`/`UNTIL` vengono ignorati quando è attivo un intervallo del selettore. |
 | **API senza intervallo esplicito** | `SINCE`/`UNTIL` nella query, impostazione predefinita: ultima ora. |
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > Poiché il selettore è vincente nei dashboard e in Esplora, questa guida in genere esclude `SINCE` dalle query del dashboard. È sempre necessario definire un selettore ora per le query.

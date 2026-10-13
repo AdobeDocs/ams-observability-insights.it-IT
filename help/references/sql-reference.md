@@ -28,7 +28,7 @@ FROM   <Entity>
 <unit>        := second | seconds | minute | minutes | hour | hours | day | days | week | weeks
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > Le `--` annotazioni di cui sopra sono solo documentazione. SQL stesso non accetta commenti.
 
 ### Clausole obbligatorie
@@ -154,7 +154,7 @@ SELECT count(*) AS total, count(*) FILTER (WHERE status = 'Error') AS errors, pe
 SELECT count(*) FROM Transaction FACET urlPath LIMIT 50
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > Imposta sempre `LIMIT` sulle variabili basate su query e sui facet ad alta cardinalità (`urlPath`, `traceId`, `jcr.path`, `url`).
 
 </details>
@@ -194,7 +194,7 @@ SELECT count(*) FROM Transaction SINCE 6 hours ago
 - La finestra non può superare **31 giorni** (_L&#39;intervallo di tempo non può superare i 31 giorni_).
 - Le date assolute (`SINCE '2026-01-01'`) e `TODAY` / `YESTERDAY` non sono supportate.
 
-> [!IMPORTANT]
+&#x200B;> [!IMPORTANT]
 > Nei dashboard e in Esplora, il selettore delle **ore sostituisce** `SINCE` e `UNTIL`. Vedi [Precedenza finestra temporale](#time-window-precedence).
 
 </details>
@@ -224,7 +224,7 @@ SELECT percentile(duration, 95) AS p95 FROM Transaction TIMESERIES AUTO
 SELECT count(*) FROM Transaction TIMESERIES 1 hour SINCE 1 day ago
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > Preferisci `AUTO` nei dashboard. Mantiene circa 120 punti qualunque sia il tempo indicato dal selettore. Evita inoltre le linee &quot;frammentate&quot; per host, perché le metriche host vengono raschiate ogni 90 secondi circa.
 
 </details>
@@ -434,7 +434,7 @@ SELECT rate(value) AS bytesPerSec FROM NetworkReceiveRate FACET host TIMESERIES 
 - Funziona solo sulle entità contatore (contrassegnate ✔ nel [Dizionario dati](#53-curated-metric-entities)).
 - Richiede `TIMESERIES` e deve essere l&#39;aggregato **only**. `FILTER` non è consentito.
 
-> [!WARNING]
+&#x200B;> [!WARNING]
 > `FACET host` o filtra su un singolo host. Un `rate()` non sfaccettato in molti host confronta diversi contatori di host e produce numeri privi di significato. I contatori del disco sono per dispositivo, quindi `FACET host, device` è il più preciso.
 
 </details>
@@ -508,14 +508,14 @@ I vincoli di funzione in breve:
 SELECT count(*) FROM Transaction WHERE (status = 'Error' OR duration > 2000) AND NOT host LIKE '%dispatcher%' AND http.method IN ('GET', 'POST')
 ```
 
-> [!WARNING]
+&#x200B;> [!WARNING]
 > `attr = NULL` è un errore. Usa `attr IS NULL`.
 
 ### Gestione dei tipi: vuoto e NULL
 
 Ogni attributo ha un tipo nel catalogo: `string`, `number`, `boolean` o `timestamp`. Il tipo SQL verifica le funzioni in base a esso (ad esempio, `average(service)` è rifiutato). Non sono necessarie o disponibili funzioni di conversione dei tipi.
 
-> [!IMPORTANT]
+&#x200B;> [!IMPORTANT]
 > **Vuoto vs. NULL** La maggior parte degli attributi di stringa proviene dalle mappe degli attributi OpenTelemetry, dove una chiave _missing_ viene letta come stringa vuota `''`, non `NULL`. Per mantenere solo le estensioni che contengono un attributo, utilizzare **`attr != ''`** anziché `IS NOT NULL`. Gli attributi numerici come `http.statusCode` sono autenticamente `NULL` quando assenti, quindi `IS NOT NULL` funziona per loro.
 
 ```sql

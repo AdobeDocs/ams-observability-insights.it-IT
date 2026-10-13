@@ -66,7 +66,7 @@ Le medie nascondono gli outlier. I percentili mostrano l’esperienza della magg
 SELECT percentile(duration, 50) AS p50, percentile(duration, 95) AS p95, percentile(duration, 99) AS p99 FROM Transaction TIMESERIES AUTO
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > p50, p95 e p99 di `Transaction.duration` sono forniti da rollup su lunghe finestre, quindi rimangono veloci per le visualizzazioni settimanali.
 
 ### Rendi i risultati leggibili con le etichette
@@ -77,7 +77,7 @@ Utilizza `AS` con virgolette singole per le etichette che contengono spazi:
 SELECT count(*) AS 'Requests', percentile(duration, 95) AS 'p95 (ms)' FROM Transaction FACET service
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > Gli alias sono validi solo per `SELECT` elementi. Le colonne facet sono sempre etichettate con il nome attributo.
 
 ### Corrispondenza di pattern ed elenchi
@@ -100,7 +100,7 @@ Confronta con un elenco con `IN` e `NOT IN` (fino a 100 valori):
 SELECT count(*) AS requests FROM Transaction WHERE http.method IN ('POST', 'PUT', 'DELETE') FACET service
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > SQL senza espressioni regolari (`RLIKE`). Combinare `LIKE` pattern con `OR` o utilizzare `IN`.
 
 ### Ordina e classifica con `ORDER BY`
@@ -117,7 +117,7 @@ Oppure, prima di tutto, i servizi meno utilizzati:
 SELECT count(*) AS requests FROM Transaction FACET service ORDER BY requests ASC LIMIT 10
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > Nessun `HAVING`. Per trovare solo le operazioni &quot;occupate&quot;, classifica per `requests` e mantieni la N superiore, oppure aggiungi un `WHERE` che rimuove il rumore (ad esempio `WHERE http.method != 'OPTIONS'`).
 
 ### Raggruppa per diversi attributi

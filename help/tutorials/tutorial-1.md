@@ -32,7 +32,7 @@ SELECT timestamp, service, name, duration FROM Transaction LIMIT 10
 
 Le righe sono ordinate in base alla prima colonna, in ordine decrescente, pertanto il posizionamento di `timestamp` offre le richieste più recenti nella parte superiore.
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > SQL non ha `SELECT *`. Gli attributi dell’elenco mantengono i risultati piccoli e leggibili. Il [dizionario dati](#data-dictionary) e il completamento automatico nell&#39;editor mostrano i dati disponibili.
 
 ### Aggregare i dati
@@ -65,7 +65,7 @@ Separa gli aggregati con virgole e denomina ciascuno con `AS`:
 SELECT count(*) AS requests, average(duration) AS avgMs, max(duration) AS maxMs FROM Transaction
 ```
 
-> [!TIP]
+&#x200B;> [!TIP]
 > Gli alias diventano intestazioni di colonna ed etichette di legenda e sono ciò a cui si fa riferimento in `ORDER BY`. Prendi l&#39;abitudine di denominare ogni aggregato.
 
 ### Impostare la finestra temporale
@@ -84,7 +84,7 @@ SELECT count(*) AS requests FROM Transaction SINCE 2 days ago UNTIL 1 day ago
 
 Le unità possono essere `second`, `minute`, `hour`, `day` o `week`. La finestra può essere al massimo di 31 giorni.
 
-> [!IMPORTANT]
+&#x200B;> [!IMPORTANT]
 > In **Esplora** e in **dashboard**, il **selettore ora** nella parte superiore della pagina controlla la finestra ed esegue l&#39;override di `SINCE`/`UNTIL`. Per esaminare un altro periodo, modificare il selettore. Il resto di questa guida lascia `SINCE` fuori dalle query del dashboard per questo motivo.
 
 ### Traccia le tendenze con `TIMESERIES`
@@ -121,7 +121,7 @@ Utilizza `LIKE` con `%` per le corrispondenze parziali:
 SELECT count(*) AS contentRequests FROM Transaction WHERE urlPath LIKE '/content/%'
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > I valori stringa fanno distinzione tra maiuscole e minuscole e utilizzano apici: `'Error'`, non `"Error"` o `'error'`. Sostituisci `checkout` con un servizio del tuo tenant. Il passaggio successivo mostra come elencarli.
 
 ### Raggruppa con `FACET`

@@ -23,7 +23,7 @@ Ogni blueprint è una dashboard completa e complessa. Elenca l&#39;obiettivo, il
 
 **Legenda Grafico:** **N** = Numero, **L** = Linea, **A** = Area, **B** = Barra, **P** = Torta, **T** = Tabella.
 
----
+&#x200B;---
 
 ### Segnali d&#39;oro / SLO
 
@@ -120,7 +120,7 @@ SELECT average(value) AS memory FROM MemoryUtilization FACET host TIMESERIES AUT
 SELECT average(value) AS load5m FROM LoadAverage5m FACET host TIMESERIES AUTO LIMIT 10
 ```
 
----
+&#x200B;---
 
 ### Errore nella bacheca di valutazione
 
@@ -207,7 +207,7 @@ SELECT count(*) AS failures, percentile(duration, 95) AS p95 FROM Span WHERE kin
 SELECT timestamp, service, host, name, urlPath, http.statusCode, duration, statusMessage, traceId FROM Transaction WHERE status = 'Error' LIMIT 200
 ```
 
----
+&#x200B;---
 
 ### Scheda per unità a profondità di latenza
 
@@ -276,7 +276,7 @@ SELECT sum(callCount) AS calls, average(avgDurationMs) AS avgMs FROM SpanBreakdo
 SELECT count(*) AS calls, max(duration) AS slowestMs, latest(traceId, duration) AS slowestTraceId, latest(host, duration) AS slowestHost FROM Transaction FACET name ORDER BY slowestMs DESC LIMIT 50
 ```
 
----
+&#x200B;---
 
 ### Scheda Dipendenze a valle
 
@@ -357,7 +357,7 @@ SELECT count(*) FILTER (WHERE kind = 'Producer') AS produced, count(*) FILTER (W
 SELECT count(*) AS calls, percentile(duration, 95) AS p95, percentage(*, WHERE status = 'Error') AS errorPct FROM Span WHERE rpc.system != '' FACET service, rpc.system, rpc.method ORDER BY calls DESC LIMIT 50
 ```
 
----
+&#x200B;---
 
 ### Scheda AEM Author/Publish/Dispatcher
 
@@ -514,7 +514,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, count(*) FILTER (WHER
 SELECT percentOfTotal(duration) AS timeShare FROM Span WHERE sling.servlet != '' FACET sling.servlet LIMIT 20
 ```
 
----
+&#x200B;---
 
 ### Scheda Capacità infrastruttura
 
@@ -661,7 +661,7 @@ Formula:
 netRx + netTx
 ```
 
----
+&#x200B;---
 
 ### JVM Health Board
 
@@ -733,7 +733,7 @@ Formula:
 (used / limit) * 100
 ```
 
-> [!NOTE]
+&#x200B;> [!NOTE]
 > Per definire l&#39;ambito di una formula per un host, aggiungere `WHERE host = 'my-publish-01'` a **entrambe** le query.
 
 **W6 · Heap utilizzato dall&#39;host** — L, `MB`, 6×4
@@ -766,7 +766,7 @@ SELECT average(value) AS jvmCpu FROM JvmCpuRecentUtilization FACET host TIMESERI
 SELECT latest(value) AS bytesUsed, max(value) AS peakBytes FROM MetricSum WHERE metric = 'jvm.memory.used' FACET host, pool ORDER BY peakBytes DESC LIMIT 100
 ```
 
----
+&#x200B;---
 
 ### 11.8 Scheda da parete Executive/NOC
 
@@ -849,7 +849,7 @@ SELECT count(*) AS requests FROM Transaction WHERE hostTierPrefix != '' FACET ho
 
 **W10 · Nota SLO** — widget di testo, 12×1.
 
----
+&#x200B;---
 
 ### Rapporti e headroom board (Formula showcase)
 
@@ -995,13 +995,13 @@ Formula (tasso di masterizzazione: 1,0 = consumo del budget esattamente in base 
 (errors / total) / 0.001
 ```
 
----
+&#x200B;---
 
 ### Service Explorer (basato su variabili)
 
 **Obiettivo:** una bacheca che qualsiasi team può puntare a _il proprio_ servizio e ambiente.
 
-> [!WARNING]
+&#x200B;> [!WARNING]
 > Vedere la **limitazione della compilazione corrente** in [Esercitazione 3, passaggio 8.7](#87-make-dashboards-reusable-with-variables): `{{variables}}` all&#39;interno di widget SQL non può ancora essere visualizzato in anteprima o salvato. Finché non sarà risolto, sostituire ogni `{{…}}` con un valore letterale (ad esempio `'checkout'`) e utilizzare _Duplica_ per clonare la bacheca per servizio. La progettazione seguente è pronta quando la sostituzione è supportata end-to-end.
 
 **Variabili**
