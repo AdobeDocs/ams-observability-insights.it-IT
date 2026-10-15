@@ -1,17 +1,15 @@
 ---
 title: 'Esercitazione 4: Funzioni avanzate'
 description: Scopri come utilizzare le funzioni SQL avanzate per analizzare la telemetria di Observability Insights.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
 workflow-type: tm+mt
-source-wordcount: '507'
+source-wordcount: '483'
 ht-degree: 1%
 ---
 
 ## Esercitazione 4: Funzioni avanzate {#tutorial-4-advanced-functions}
 
 Questo tutorial illustra le funzioni e le entità che consentono di eseguire indagini più approfondite: variabilità, crescita, ricerche basate sull’esempio peggiore, quota di totali, composizione delle transazioni e metriche OpenTelemetry arbitrarie.
-
-**In questa esercitazione:** [9.1 stddev](#91-measure-consistency-with-stddev) · [9.2 derivato](#92-spot-growth-with-derivative) · [9.3 Classificato più recente](#93-find-the-worst-example-with-ranked-latest) · [9.4 percentOfTotal](#94-find-where-time-goes-with-percentoftotal) · [9.5 SpanBreakdown](#95-break-down-transactions-with-spanbreakdown) · [9.6 Qualsiasi metrica](#96-discover-and-query-any-metric) · [9.7 Scegli l&#39;entità](#97-choose-the-right-trace-entity) · [9.8 Aggregazione nidificata](#98-work-around-nested-aggregation)
 
 ### Misura la coerenza con `stddev`
 
@@ -124,9 +122,9 @@ SELECT count(*) AS calls, percentage(*, WHERE status = 'Error') AS errorPct, per
 NRQL consente di aggregare un aggregato con una sottoquery, ad esempio &quot;la media dei massimi per host&quot;. SQL non lo fa. Di seguito sono elencate le alternative:
 
 | Obiettivo | Approccio SQL |
-| --------------------------------------- | ---------------------------------------------------------- |
+| --------------------------------------- | -------------------------------------------------------------------- |
 | Un valore per gruppo, quindi classifica i gruppi | `FACET group` + `ORDER BY alias` + `LIMIT` |
-| Rapporto tra due aggregati | [Widget formula](#86-combine-queries-with-formula-widgets) |
+| Rapporto tra due aggregati | [Widget formula](tutorial-3.md#combine-queries-with-formula-widgets) |
 | Un valore per host, quindi l’&quot;host peggiore&quot; | `FACET host ORDER BY alias DESC LIMIT 1` |
 | Media per host nel tempo | `FACET host TIMESERIES AUTO` e leggi la serie |
 

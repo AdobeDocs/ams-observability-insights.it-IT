@@ -1,17 +1,15 @@
 ---
 title: Riferimento SQL
 description: Fai riferimento alla sintassi SQL, alle clausole e alle funzioni supportate da Observability Insights.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
 workflow-type: tm+mt
-source-wordcount: '1492'
-ht-degree: 9%
+source-wordcount: '1505'
+ht-degree: 11%
 ---
 
 ## Riferimento SQL {#sql-reference}
 
 Questo riferimento descrive la sintassi SQL, le clausole, le funzioni e gli operatori. Espandere ogni voce per dettagli ed esempi.
-
-**In questo documento:** [Componenti query](#41-query-components) · [Clausole obbligatorie](#42-required-clauses) · [Clausole facoltative](#43-optional-clauses) · [Funzioni aggregatore](#44-aggregator-functions) · [Operatori e condizioni](#45-operators-and-conditions) · [Gestione tipi](#46-type-handling-blank-vs-null) · [SQL in SQL](#47-translate-sql-to-sql) · [Importazione dashboard esistenti](#48-importing-existing-dashboards-to-insights)
 
 ### Componenti query
 
@@ -31,14 +29,15 @@ FROM   <Entity>
 <unit>        := second | seconds | minute | minutes | hour | hours | day | days | week | weeks
 ```
 
->[!NOTE]
+> **Nota**
 >
 > Le `--` annotazioni di cui sopra sono solo documentazione. SQL stesso non accetta commenti.
 
 ### Clausole obbligatorie
 
-<details>
-<summary><code>SELECT</code> — cosa restituire</summary>
+#### `SELECT` — cosa restituire
+
++++Visualizza dettagli
 
 `SELECT` elenca **attributi raw** (una query evento) o **funzioni di aggregazione** (una query di aggregazione). Non si possono mescolare le due cose.
 
@@ -67,10 +66,11 @@ Regole:
 - Matematica tra attributi o aggregati (`sum(a) / count(*)`) non supportata. Utilizza un widget [Formula](#86-combine-queries-with-formula-widgets).
 - La combinazione di attributi e aggregati non riesce con _Gli attributi non elaborati non possono essere combinati con gli aggregati. Utilizzare FACET per raggruppare i risultati_.
 
-</details>
++++
 
-<details>
-<summary><code>FROM</code> — quale entità eseguire la query</summary>
+#### `FROM` — quale entità eseguire la query
+
++++Visualizza dettagli
 
 `FROM` nomina esattamente **una** entità dal [dizionario dati](#data-dictionary). Il nome dell’entità non fa distinzione tra maiuscole e minuscole.
 
@@ -84,12 +84,13 @@ FROM Span SELECT count(*) FACET kind
 
 Ogni entità ha un ambito fisso. Ad esempio, `Transaction` è sempre l&#39;estensione del server e `CpuUtilization` è sempre la metrica occupata da CPU con `value` convertito in percentuale. Non è possibile eseguire query su più di un&#39;entità in una singola query. Per combinare le entità, utilizzare un widget [Formula](#86-combine-queries-with-formula-widgets).
 
-</details>
++++
 
 ### Clausole facoltative
 
-<details>
-<summary><code>AS</code> — etichetta una colonna</summary>
+#### `AS` — etichetta una colonna
+
++++Visualizza dettagli
 
 Utilizzare `AS` per assegnare un nome leggibile a un aggregato o a un attributo. L&#39;alias diventa l&#39;intestazione della colonna, l&#39;etichetta della legenda e il nome a cui si fa riferimento in `ORDER BY`.
 
@@ -103,10 +104,11 @@ Utilizza una stringa racchiusa tra virgolette singole per le etichette con spazi
 SELECT percentile(duration, 95) AS 'p95 latency (ms)' FROM Transaction TIMESERIES AUTO
 ```
 
-</details>
++++
 
-<details>
-<summary><code>FACET</code> — risultati gruppo</summary>
+#### `FACET` — risultati gruppo
+
++++Visualizza dettagli
 
 `FACET` raggruppa i risultati in base a un massimo di **5** attributi, ad esempio SQL `GROUP BY`.
 
@@ -127,10 +129,11 @@ SELECT count(*) AS requests FROM Transaction FACET service TIMESERIES AUTO LIMIT
 
 I valori facet possono essere stringhe o numeri. Le stringhe vuote costituiscono il proprio gruppo. Escludili con `WHERE attr != ''`.
 
-</details>
++++
 
-<details>
-<summary><code>FILTER</code> — aggregati condizionali</summary>
+#### `FILTER` — aggregati condizionali
+
++++Visualizza dettagli
 
 Aggiungi `FILTER (WHERE condition)` a qualsiasi aggregato per calcolarlo in un sottoinsieme di righe. Questo consente di confrontare diverse condizioni in un’unica passata.
 
@@ -140,10 +143,11 @@ SELECT count(*) AS total, count(*) FILTER (WHERE status = 'Error') AS errors, pe
 
 `FILTER` non è consentito con `apdex`, `rate` o `derivative`. `percentage` ha già la propria condizione.
 
-</details>
++++
 
-<details>
-<summary><code>LIMIT</code> — quante righe o serie</summary>
+#### `LIMIT` — quante righe o serie
+
++++Visualizza dettagli
 
 `LIMIT` accetta un numero intero positivo. I valori superiori a 5.000 vengono bloccati a 5.000.
 
@@ -162,10 +166,11 @@ SELECT count(*) FROM Transaction FACET urlPath LIMIT 50
 >
 > Imposta sempre `LIMIT` sulle variabili basate su query e sui facet ad alta cardinalità (`urlPath`, `traceId`, `jcr.path`, `url`).
 
-</details>
++++
 
-<details>
-<summary><code>ORDER BY</code> — ordina i risultati</summary>
+#### `ORDER BY` — ordina i risultati
+
++++Visualizza dettagli
 
 `ORDER BY` ordina per un **alias selezionato o attributo selezionato**. La direzione predefinita è `DESC`.
 
@@ -184,10 +189,11 @@ Regole:
 - Il riferimento a un elemento non selezionato non riesce con _ORDER BY &#39;x&#39; deve fare riferimento a un valore o alias selezionato_.
 - Non aggiungere `ORDER BY` a una query `TIMESERIES`. Ignora l’ordine del tempo necessario per i grafici.
 
-</details>
++++
 
-<details>
-<summary><code>SINCE</code> — inizio della finestra</summary>
+#### `SINCE` — inizio della finestra
+
++++Visualizza dettagli
 
 `SINCE n unit [AGO]` imposta la distanza di inizio della finestra. Unità: `second`, `minute`, `hour`, `day`, `week` (singolare o plurale). `AGO` è facoltativo.
 
@@ -203,10 +209,11 @@ SELECT count(*) FROM Transaction SINCE 6 hours ago
 >
 > Nei dashboard e in Esplora, il selettore delle **ore sostituisce** `SINCE` e `UNTIL`. Vedi [Precedenza finestra temporale](#time-window-precedence).
 
-</details>
++++
 
-<details>
-<summary><code>TIMESERIES</code> — plottaggio nel tempo</summary>
+#### `TIMESERIES` — plottaggio nel tempo
+
++++Visualizza dettagli
 
 `TIMESERIES` restituisce una riga per periodo fisso (per valore facet), che è pronto per i grafici a linee, ad area o a barre.
 
@@ -234,10 +241,11 @@ SELECT count(*) FROM Transaction TIMESERIES 1 hour SINCE 1 day ago
 >
 > Preferisci `AUTO` nei dashboard. Mantiene circa 120 punti qualunque sia il tempo indicato dal selettore. Evita inoltre le linee &quot;frammentate&quot; per host, perché le metriche host vengono raschiate ogni 90 secondi circa.
 
-</details>
++++
 
-<details>
-<summary><code>UNTIL</code> — fine della finestra</summary>
+#### `UNTIL` — fine della finestra
+
++++Visualizza dettagli
 
 `UNTIL NOW` (impostazione predefinita) o `UNTIL n unit [AGO]`. Combinalo con `SINCE` per guardare una finestra passata:
 
@@ -247,10 +255,11 @@ SELECT count(*) AS yesterday FROM Transaction SINCE 2 days ago UNTIL 1 day ago
 
 `SINCE` deve essere precedente a `UNTIL`. In caso contrario, la query non riesce con _SINCE deve essere precedente a UNTIL_.
 
-</details>
++++
 
-<details>
-<summary><code>WHERE</code> — filtra righe</summary>
+#### `WHERE` — filtra righe
+
++++Visualizza dettagli
 
 `WHERE` mantiene solo le righe che corrispondono a una condizione. Combinare le condizioni con `AND`, `OR`, `NOT` e parentesi. Vedi [Operatori e condizioni](#45-operators-and-conditions).
 
@@ -260,7 +269,7 @@ SELECT count(*) FROM Transaction WHERE service = 'checkout' AND (status = 'Error
 
 `WHERE` può essere visualizzato una sola volta. Mettici dentro tutte le condizioni.
 
-</details>
++++
 
 ### Funzioni aggregatore
 
@@ -283,8 +292,9 @@ SELECT count(*) FROM Transaction WHERE service = 'checkout' AND (status = 'Error
 
 <a id="fn-apdex"></a>
 
-<details>
-<summary><code>apdex(attribute, T)</code></summary>
+#### `apdex(attribute, T)`
+
++++Visualizza dettagli
 
 Calcola un punteggio di [Apdex](https://www.apdex.org/) da 0 (frustrato) a 1 (soddisfatto), utilizzando la soglia `T` nell&#39;unità dell&#39;attributo (millisecondi per `duration`).
 
@@ -302,12 +312,13 @@ SELECT apdex(duration, 500) AS apdex FROM Transaction FACET service
 - `T` deve essere maggiore di 0. `FILTER` non è consentito.
 - `apdex(duration, 500)` su `Transaction` viene eseguito il rollup-accelerato su finestre lunghe.
 
-</details>
++++
 
 <a id="fn-average"></a>
 
-<details>
-<summary><code>average(attribute)</code> / <code>avg(attribute)</code></summary>
+#### `average(attribute)` / `avg(attribute)`
+
++++Visualizza dettagli
 
 Media aritmetica di un attributo numerico.
 
@@ -315,12 +326,13 @@ Media aritmetica di un attributo numerico.
 SELECT average(duration) AS avgMs FROM Transaction FACET service TIMESERIES AUTO
 ```
 
-</details>
++++
 
 <a id="fn-count"></a>
 
-<details>
-<summary><code>count(*)</code> / <code>count(attribute)</code></summary>
+#### `count(*)` / `count(attribute)`
+
++++Visualizza dettagli
 
 - `count(*)` conta le righe.
 - `count(attribute)` conta le righe in cui l&#39;attributo è **not NULL**. Per gli attributi stringa, i valori mancanti sono vuoti (`''`) anziché NULL, pertanto vengono ancora conteggiati (vedi [Gestione dei tipi](#46-type-handling-blank-vs-null)).
@@ -329,12 +341,13 @@ SELECT average(duration) AS avgMs FROM Transaction FACET service TIMESERIES AUTO
 SELECT count(*) AS requests, count(http.statusCode) AS withStatusCode FROM Transaction
 ```
 
-</details>
++++
 
 <a id="fn-derivative"></a>
 
-<details>
-<summary><code>derivative(attribute)</code></summary>
+#### `derivative(attribute)`
+
++++Visualizza dettagli
 
 Modifica di `average(attribute)` al secondo tra bucket consecutivi: (questo bucket − quello precedente) ÷ bucket secondi. Il risultato può essere negativo. Utilizzalo sui misuratori per vedere se un valore sta crescendo o diminuendo.
 
@@ -345,12 +358,13 @@ SELECT derivative(value) AS heapGrowthPerSec FROM JvmHeapUsed WHERE host = 'publ
 - Richiede `TIMESERIES` e deve essere l&#39;aggregato **only**. `FILTER` non è consentito.
 - Il primo bucket non ha predecessori.
 
-</details>
++++
 
 <a id="fn-latest"></a>
 
-<details>
-<summary><code>latest(attribute [, rankAttribute])</code> / <code>earliest(…)</code></summary>
+#### `latest(attribute [, rankAttribute])` / `earliest(…)`
+
++++Visualizza dettagli
 
 - `latest(attr)` restituisce il valore della riga più recente. `earliest(attr)` restituisce il valore della riga meno recente.
 - Con un secondo argomento, la riga viene scelta da tale attributo anziché dal tempo. `latest(traceId, duration)` restituisce l&#39;ID di traccia della richiesta **slower**. `earliest(traceId, duration)` restituisce il valore più veloce.
@@ -363,12 +377,13 @@ SELECT latest(value) AS current FROM MemoryUtilization FACET host
 SELECT max(duration) AS slowestMs, latest(traceId, duration) AS slowestTrace FROM Transaction FACET name ORDER BY slowestMs DESC LIMIT 10
 ```
 
-</details>
++++
 
 <a id="fn-minmax"></a>
 
-<details>
-<summary><code>max(attribute)</code> / <code>min(attribute)</code></summary>
+#### `max(attribute)` / `min(attribute)`
+
++++Visualizza dettagli
 
 Il valore più grande o più piccolo. Funziona su numeri, stringhe e marche temporali.
 
@@ -376,12 +391,13 @@ Il valore più grande o più piccolo. Funziona su numeri, stringhe e marche temp
 SELECT min(duration) AS fastestMs, max(duration) AS slowestMs, max(timestamp) AS lastSeen FROM Transaction FACET service
 ```
 
-</details>
++++
 
 <a id="fn-percentage"></a>
 
-<details>
-<summary><code>percentage(*, WHERE condition)</code></summary>
+#### `percentage(*, WHERE condition)`
+
++++Visualizza dettagli
 
 La condivisione di righe corrispondenti a `condition`, da 0 a 100.
 
@@ -395,12 +411,13 @@ SELECT percentage(*, WHERE duration > 2000) AS slowPct FROM Transaction
 
 `percentage` ha una propria condizione, quindi non accetta `FILTER`.
 
-</details>
++++
 
 <a id="fn-percentile"></a>
 
-<details>
-<summary><code>percentile(attribute, p)</code></summary>
+#### `percentile(attribute, p)`
+
++++Visualizza dettagli
 
 Il p-esimo percentile approssimativo, dove `0 < p ≤ 100`. Utilizza un `percentile` per livello.
 
@@ -410,12 +427,13 @@ SELECT percentile(duration, 50) AS p50, percentile(duration, 95) AS p95, percent
 
 p50, p95 e p99 su `Transaction` sono accelerati da rollup su lunghe finestre.
 
-</details>
++++
 
 <a id="fn-percentoftotal"></a>
 
-<details>
-<summary><code>percentOfTotal(attribute)</code></summary>
+#### `percentOfTotal(attribute)`
+
++++Visualizza dettagli
 
 La quota di ogni riga facet della **somma totale** di un attributo numerico. La somma delle righe è 100%.
 
@@ -425,12 +443,13 @@ SELECT sum(duration) AS totalMs, percentOfTotal(duration) AS shareOfTime FROM Tr
 
 Non consentito con `TIMESERIES`.
 
-</details>
++++
 
 <a id="fn-rate"></a>
 
-<details>
-<summary><code>rate(attribute)</code></summary>
+#### `rate(attribute)`
+
++++Visualizza dettagli
 
 Numero di contatori cumulativi **al secondo**. In ogni bucket, `rate` considera la lettura del contatore più alta per serie e la differenzia rispetto al bucket precedente. I resettaggi dei contatori hanno un valore pari a 0 e il primo bucket è 0.
 
@@ -445,12 +464,13 @@ SELECT rate(value) AS bytesPerSec FROM NetworkReceiveRate FACET host TIMESERIES 
 >
 > `FACET host` o filtra su un singolo host. Un `rate()` non sfaccettato in molti host confronta diversi contatori di host e produce numeri privi di significato. I contatori del disco sono per dispositivo, quindi `FACET host, device` è il più preciso.
 
-</details>
++++
 
 <a id="fn-stddev"></a>
 
-<details>
-<summary><code>stddev(attribute)</code></summary>
+#### `stddev(attribute)`
+
++++Visualizza dettagli
 
 Deviazione standard del campione. Utilizzalo con `average` per verificare la coerenza della latenza.
 
@@ -458,12 +478,13 @@ Deviazione standard del campione. Utilizzalo con `average` per verificare la coe
 SELECT average(duration) AS avgMs, stddev(duration) AS stddevMs FROM Transaction FACET name LIMIT 20
 ```
 
-</details>
++++
 
 <a id="fn-sum"></a>
 
-<details>
-<summary><code>sum(attribute)</code></summary>
+#### `sum(attribute)`
+
++++Visualizza dettagli
 
 Totale di un attributo numerico.
 
@@ -471,12 +492,13 @@ Totale di un attributo numerico.
 SELECT sum(callCount) AS calls FROM SpanBreakdown FACET segment LIMIT 20
 ```
 
-</details>
++++
 
 <a id="fn-uniquecount"></a>
 
-<details>
-<summary><code>uniqueCount(attribute)</code></summary>
+#### `uniqueCount(attribute)`
+
++++Visualizza dettagli
 
 Numero **esatto** di valori distinti.
 
@@ -484,7 +506,7 @@ Numero **esatto** di valori distinti.
 SELECT uniqueCount(host) AS hosts, uniqueCount(traceId) AS traces FROM Transaction FACET service
 ```
 
-</details>
++++
 
 I vincoli di funzione in breve:
 
@@ -516,7 +538,7 @@ I vincoli di funzione in breve:
 SELECT count(*) FROM Transaction WHERE (status = 'Error' OR duration > 2000) AND NOT host LIKE '%dispatcher%' AND http.method IN ('GET', 'POST')
 ```
 
->[!WARNING]
+> **Avviso**
 >
 > `attr = NULL` è un errore. Usa `attr IS NULL`.
 
@@ -524,7 +546,7 @@ SELECT count(*) FROM Transaction WHERE (status = 'Error' OR duration > 2000) AND
 
 Ogni attributo ha un tipo nel catalogo: `string`, `number`, `boolean` o `timestamp`. Il tipo SQL verifica le funzioni in base a esso (ad esempio, `average(service)` è rifiutato). Non sono necessarie o disponibili funzioni di conversione dei tipi.
 
->[!IMPORTANT]
+> **Importante**
 >
 > **Vuoto vs. NULL** La maggior parte degli attributi di stringa proviene dalle mappe degli attributi OpenTelemetry, dove una chiave _missing_ viene letta come stringa vuota `''`, non `NULL`. Per mantenere solo le estensioni che contengono un attributo, utilizzare **`attr != ''`** anziché `IS NOT NULL`. Gli attributi numerici come `http.statusCode` sono autenticamente `NULL` quando assenti, quindi `IS NOT NULL` funziona per loro.
 
@@ -555,23 +577,23 @@ SELECT count(*) AS jcrCalls FROM Span WHERE jcr.operation != '' FACET jcr.operat
 Se conosci la query esistente, di seguito sono riportati i dettagli della migrazione
 
 | Query esistente | SQL | Note |
-| ------------------------------------------- | ------------------------------------------------------------------ | ------------------------------------------------------------ |
+| ------------------------------------------- | ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
 | `FROM Transaction SELECT count(*)` | Uguale | Supporto di `FROM`-primo ordine |
 | `SINCE 1 day ago` | Uguale | Ignorato nei dashboard; il selettore vince |
 | `TIMESERIES AUTO` / `MAX` / `5 minutes` | Uguale | Il pavimento di `AUTO` è di 2 minuti |
-| `FACET appName` | `FACET appName` / `FACET service` |                                                              |
-| `percentage(count(*), WHERE error IS true)` | `percentage(*, WHERE status = 'Error')` |                                                              |
+| `FACET appName` | `FACET appName` / `FACET service` |                                                                                  |
+| `percentage(count(*), WHERE error IS true)` | `percentage(*, WHERE status = 'Error')` |                                                                                  |
 | `filter(count(*), WHERE …)` | `count(*) FILTER (WHERE …)` | Modulo standard SQL |
 | `apdex(duration, t: 0.5)` | `apdex(duration, 500)` | `duration` in **ms** |
 | `latest(x)` / `earliest(x)` | Uguale | Più un modulo classificato: `latest(x, rankAttr)` |
 | `uniqueCount(x)` | Uguale | Esatto |
 | `rate(count(*), 1 minute)` | `count(*)` con `TIMESERIES 1 minute` | SQL `rate()` è solo per contatori |
 | `derivative(x, 1 minute)` | `derivative(x)` + `TIMESERIES` | Al secondo |
-| `uniques(x)` | `count(*) … FACET x LIMIT n` |                                                              |
-| `keyset()` / `SHOW EVENT TYPES` | [Query di individuazione](#101-data-discovery) o pannello della guida Query |                                                              |
-| `histogram(duration, …)` | `FILTER` bucket | Consulta [Esercitazione 3](#84-build-a-latency-histogram) |
-| `FACET CASES (…)` | `FILTER` colonne | Consulta [Esercitazione 3](#83-group-values-into-cases-with-filter) |
+| `uniques(x)` | `count(*) … FACET x LIMIT n` |                                                                                  |
+| `keyset()` / `SHOW EVENT TYPES` | [Query di individuazione](../examples/query-cookbook.md#data-discovery) o pannello della guida Query |                                                                                  |
+| `histogram(duration, …)` | `FILTER` bucket | Consulta [Esercitazione 3](../tutorials/tutorial-3.md#build-a-latency-histogram) |
+| `FACET CASES (…)` | `FILTER` colonne | Consulta [Esercitazione 3](../tutorials/tutorial-3.md#group-values-into-cases-with-filter) |
 | `COMPARE WITH 1 week ago` | Non supportato | Modifica il selettore ora o utilizza `SINCE … UNTIL …` tramite l&#39;API |
-| `RLIKE` | `LIKE` / `IN` |                                                              |
-| Matematica in `SELECT` / aggregazione nidificata | Widget **Formula** |                                                              |
-| `WITH TIMEZONE`, `EXTRAPOLATE`, `SLIDE BY` | Non supportato |                                                              |
+| `RLIKE` | `LIKE` / `IN` |                                                                                  |
+| Matematica in `SELECT` / aggregazione nidificata | Widget **Formula** |                                                                                  |
+| `WITH TIMEZONE`, `EXTRAPOLATE`, `SLIDE BY` | Non supportato |                                                                                  |

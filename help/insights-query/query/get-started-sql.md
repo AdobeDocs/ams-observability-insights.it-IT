@@ -1,9 +1,9 @@
 ---
 title: Introduzione a SQL
 description: Scopri come eseguire query sulla telemetria Observability Insights utilizzando SQL.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 148bf6480461a0109b221b8e7c2f9ab2035a7d68
 workflow-type: tm+mt
-source-wordcount: '684'
+source-wordcount: '690'
 ht-degree: 1%
 ---
 
@@ -16,7 +16,7 @@ ht-degree: 1%
 | **Si applica a** | Interfaccia utente approfondimenti → **Esplora** e **Dashboard** (dashboard personalizzati) |
 | **Pubblico** | Ingegneri, SRE e utenti esperti che conoscono SQL |
 
->[!TIP]
+> **Suggerimento**
 >
 > Ogni blocco di codice contrassegnato `sql` è una query SQL che è possibile incollare direttamente in **Esplora → SQL** o in **Dashboard → Aggiungi widget → SQL**.
 
@@ -42,13 +42,13 @@ Usa SQL per:
 
 SQL supporta sia **query evento**, che restituiscono singole righe di richiesta, sia **query aggregate**, che restituiscono totali, percentili, percentuali, raggruppamenti e serie temporali.
 
->[!TIP]
+> **Suggerimento**
 >
 > I modelli in **Dashboard → Crea dashboard** sono interamente generati da SQL. Apri qualsiasi widget modello con l’icona a forma di matita per visualizzare la query corrispondente e imparare da essa.
 
 ### Elementi su cui è possibile eseguire query
 
-SQL può eseguire query su quattro famiglie di dati. L&#39;elenco completo si trova nel [dizionario dati](#data-dictionary).
+SQL può eseguire query su quattro famiglie di dati. L&#39;elenco completo si trova nel [dizionario dati](/help/references/data-dictionary.md).
 
 | Famiglia | Entità | Domande tipiche |
 | ------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
@@ -57,7 +57,7 @@ SQL può eseguire query su quattro famiglie di dati. L&#39;elenco completo si tr
 | **Metriche generiche** | `MetricGauge`, `MetricSum` | Qualsiasi metrica OpenTelemetry per nome, individuazione metrica |
 | **Composizione span preaggregata** | `SpanBreakdown` | Quali operazioni figlio costituiscono una transazione |
 
->[!NOTE]
+> **Nota**
 >
 > I registri, le definizioni degli avvisi e le relazioni di inventario non sono disponibili.
 
@@ -97,7 +97,7 @@ FROM    Entity
 Di seguito sono riportate le regole SQL seguenti:
 
 | Regola | Dettagli |
-| ---------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| ---------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | **Clausole obbligatorie** | `SELECT` e `FROM` sono obbligatori. Ogni altra clausola è facoltativa. È possibile iniziare con: `FROM Transaction SELECT count(*)` è valido anche. |
 | **Ordine clausole** | Le clausole successive a `FROM` possono essere visualizzate in qualsiasi ordine. Ogni clausola può essere visualizzata una sola volta. |
 | **Dimensione query** | Una query non può superare i 4 KB. |
@@ -106,5 +106,5 @@ Di seguito sono riportate le regole SQL seguenti:
 | **Valori letterali** | Stringhe, numeri (inclusi negativi e decimali), `TRUE`, `FALSE`, `NULL`. |
 | **Nomi di attributo** | I nomi possono contenere lettere, cifre, `_` e `.` (ad esempio `http.statusCode`). Non sono necessari backtick. |
 | **Aggregati e attributi** | Una query seleziona attributi non elaborati (un elenco di eventi) o aggrega, mai entrambi. Per raggruppare, utilizzare `FACET`. |
-| **Intervallo temporale** | L&#39;impostazione predefinita è l&#39;ultima ora. Il massimo è di 31 giorni. Nei dashboard e in Esplora, il **selettore ore** imposta la finestra (vedi [Finestra temporale](#time-window-precedence)). |
-| **Non supportato** | Punti e virgola, commenti, sottoquery, join, `SELECT *`, corrispondenza tra gli attributi in `SELECT`, `HAVING`, `COMPARE WITH`. Per informazioni sulle alternative, vedere [Funzionalità non disponibili in SQL](#what-sql-doesnt-do). |
+| **Intervallo temporale** | L&#39;impostazione predefinita è l&#39;ultima ora. Il massimo è di 31 giorni. Nei dashboard e in Esplora, il **selettore ore** imposta la finestra (vedi [Finestra temporale](how-to-query-sql.md#time-window-precedence)). |
+| **Non supportato** | Punti e virgola, commenti, sottoquery, join, `SELECT *`, corrispondenza tra gli attributi in `SELECT`, `HAVING`, `COMPARE WITH`. Per informazioni sulle alternative, vedere [Funzionalità non disponibili in SQL](sql-query-examples.md#what-sql-doesnt-do). |

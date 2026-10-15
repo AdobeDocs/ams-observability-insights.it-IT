@@ -1,17 +1,15 @@
 ---
 title: 'Esercitazione 3: Migliorare il dashboard'
 description: Crea dashboard con variabili, formule e più widget in Observability Insights.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
 workflow-type: tm+mt
-source-wordcount: '902'
+source-wordcount: '879'
 ht-degree: 3%
 ---
 
 ## Esercitazione 3: Migliorare il dashboard {#tutorial-3-advance-your-dashboarding}
 
 In questa esercitazione verranno creati i componenti di un dashboard di livello produzione: punteggi dell’esperienza utente, tassi di conteggio, raggruppamento di maiuscole e minuscole, istogrammi, tessere KPI con soglie, sezioni, widget di formule e variabili.
-
-**In questa esercitazione:** [8.1 apdex](#81-score-user-experience-with-apdex) · [8.2 rate](#82-turn-counters-into-rates-with-rate) · [8.3 Casi](#83-group-values-into-cases-with-filter) · [8.4 Istogrammi](#84-build-a-latency-histogram) · [8.5 Tessere e sezioni KPI](#85-build-kpi-tiles-and-sections) · [8.6 Formule](#86-combine-queries-with-formula-widgets) · [8.7 Variabili](#87-make-dashboards-reusable-with-variables) · [8.8 Mettilo insieme](#88-put-it-together)
 
 ### Punteggio esperienza utente con `apdex`
 
@@ -29,7 +27,7 @@ SELECT apdex(duration, 500) AS apdex FROM Transaction FACET service TIMESERIES A
 
 Inseriscilo in un widget **Numero** con soglie `0 → Red`, `0.7 → Amber`, `0.85 → Green`. La fascia con il punteggio più alto vince, quindi i punteggi più bassi rimangono rossi.
 
-### 8.2 Trasforma i contatori in tariffe con `rate`
+### Trasforma i contatori in tariffe con `rate`
 
 Le entità contatore (✔ nel [dizionario dati](#53-curated-metric-entities)) memorizzano totali in continua crescita. `rate(value)` li converte in valori al secondo. Ha bisogno di `TIMESERIES` e deve essere l&#39;unico aggregato:
 
@@ -41,7 +39,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS writeBytesPerSec FROM DiskWriteRate FACET host, device TIMESERIES AUTO LIMIT 10
 ```
 
->[!WARNING]
+> **Avviso**
 >
 > Effettua sempre il facet `rate()` per `host` (e per `device` per i dischi) o filtra su un host. Senza questo, le letture da host diversi si mescolano tra loro e il risultato non ha senso.
 
@@ -192,7 +190,7 @@ SELECT count(*) FROM Transaction FACET service LIMIT 200
 
 Le opzioni si aggiornano quando cambia il tenant o il selettore ora e vengono ordinate alfabeticamente. Quando la selezione corrente non è più valida, il primo valore (selezione singola) o tutti i valori (selezione multipla) vengono selezionati automaticamente. La query di una variabile non può fare riferimento ad altre variabili.
 
->[!WARNING]
+> **Avviso**
 >
 > **Limitazione della compilazione corrente.** La sostituzione avviene nella griglia del dashboard, ma l&#39;anteprima **Aggiungi widget** e il **controllo di salvataggio lato server** ricevono il token `{{name}}` non elaborato e lo rifiutano con `Unexpected character '{'`. In pratica:
 >
@@ -203,4 +201,4 @@ Le opzioni si aggiornano quando cambia il tenant o il selettore ora e vengono or
 
 ### Mettilo insieme
 
-Nelle [blueprint del dashboard](#dashboard-blueprints) sono ora utilizzati tutti i blocchi predefiniti: tessere KPI con soglie, sezioni, percentili, Apdex, tassi, colonne di maiuscole/minuscole, istogrammi, formule e variabili. I blueprint mostrano come combinarli in dashboard completi per segnale d’oro, valutazione degli errori, AEM, infrastruttura e JVM.
+Nelle [blueprint del dashboard](../examples/dashboard-blueprint.md) sono ora utilizzati tutti i blocchi predefiniti: tessere KPI con soglie, sezioni, percentili, Apdex, tassi, colonne di maiuscole/minuscole, istogrammi, formule e variabili. I blueprint mostrano come combinarli in dashboard completi per segnale d’oro, valutazione degli errori, AEM, infrastruttura e JVM.

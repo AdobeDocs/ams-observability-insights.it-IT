@@ -1,9 +1,9 @@
 ---
 title: Esempi di query SQL
 description: Esplora gli esempi di query SQL per la telemetria di Observability Insights.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 4ad45ae5cbb2a7b348fdad1cd2681a72be12f5eb
 workflow-type: tm+mt
-source-wordcount: '306'
+source-wordcount: '311'
 ht-degree: 10%
 ---
 
@@ -22,10 +22,9 @@ FROM Transaction SELECT percentile(duration, 95) AS p95 FACET service TIMESERIES
 
 In un grafico a linee viene generata una riga per servizio, con i 10 servizi più attivi visualizzati per impostazione predefinita.
 
-Fai clic su ogni esempio di seguito per espanderlo.
+### Query di base delle richieste in entrata
 
-<details>
-<summary><strong>Query di base delle richieste in entrata</strong></summary>
++++Visualizza query
 
 Tempo medio di risposta, in millisecondi, di tutte le richieste in entrata:
 
@@ -33,10 +32,11 @@ Tempo medio di risposta, in millisecondi, di tutte le richieste in entrata:
 SELECT average(duration) FROM Transaction
 ```
 
-</details>
++++
 
-<details>
-<summary><strong>Nomi di attributi contenenti punti</strong></summary>
+### Nomi di attributi che contengono punti
+
++++Visualizza query
 
 I nomi punteggiati non richiedono virgolette:
 
@@ -44,10 +44,11 @@ I nomi punteggiati non richiedono virgolette:
 SELECT count(*) FROM Transaction WHERE http.statusCode >= 500 FACET http.route
 ```
 
-</details>
++++
 
-<details>
-<summary><strong>La query restituisce più colonne</strong></summary>
+### Query che restituisce più colonne
+
++++Visualizza query
 
 Diversi aggregati in una query diventano colonne in una tabella:
 
@@ -55,10 +56,11 @@ Diversi aggregati in una query diventano colonne in una tabella:
 SELECT count(*) AS requests, average(duration) AS avgMs, percentile(duration, 95) AS p95, max(duration) AS maxMs FROM Transaction FACET service
 ```
 
-</details>
++++
 
-<details>
-<summary><strong>Aggregazioni condizionali in un passaggio</strong></summary>
+### Aggregati condizionali in un passaggio
+
++++Visualizza query
 
 Totale, errori e 5xx affiancati:
 
@@ -66,10 +68,11 @@ Totale, errori e 5xx affiancati:
 SELECT count(*) AS total, count(*) FILTER (WHERE status = 'Error') AS errors, count(*) FILTER (WHERE http.statusCode >= 500) AS http5xx FROM Transaction FACET service
 ```
 
-</details>
++++
 
-<details>
-<summary><strong>Query di una metrica curata</strong></summary>
+### Query di una metrica curata
+
++++Visualizza query
 
 Media di CPU per host nel tempo:
 
@@ -77,10 +80,11 @@ Media di CPU per host nel tempo:
 SELECT average(value) AS cpu FROM CpuUtilization FACET host TIMESERIES AUTO
 ```
 
-</details>
++++
 
-<details>
-<summary><strong>Query di qualsiasi metrica OpenTelemetry per nome</strong></summary>
+### Query di qualsiasi metrica OpenTelemetry per nome
+
++++Visualizza query
 
 Usa `MetricGauge` / `MetricSum` per le metriche senza un&#39;entità curata:
 
@@ -88,7 +92,7 @@ Usa `MetricGauge` / `MetricSum` per le metriche senza un&#39;entità curata:
 SELECT latest(value) AS bytesUsed FROM MetricSum WHERE metric = 'jvm.memory.used' FACET host, pool
 ```
 
-</details>
++++
 
 <a id="what-sql-doesnt-do"></a>
 
@@ -97,15 +101,15 @@ SELECT latest(value) AS bytesUsed FROM MetricSum WHERE metric = 'jvm.memory.used
 SQL è volutamente piccolo. In questo modo le query sono sicure, veloci e isolate dal tenant. Se hai bisogno di una di queste funzionalità, utilizza l’alternativa.
 
 | Funzionalità | Stato | Alternativa |
-| ------------------------------------------- | ------------- | ------------------------------------------------------------------------------------------------------------ |
+| ------------------------------------------- | ------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
 | `SELECT *` | Non supportato | Elencare gli attributi desiderati: `SELECT timestamp, name, duration, traceId …`. |
 | Combinazione di attributi raw e aggregati | Non supportato | Utilizza `FACET attr` o `latest(attr)` / `earliest(attr)`. |
 | Matematica in `SELECT` (`a - b`, `count(*) / 60`) | Non supportato | Widget **Formula** (dashboard). |
 | Join e sottoquery | Non supportato | **Widget Formula** o due widget affiancati. |
 | `HAVING` | Non supportato | `ORDER BY alias` + `LIMIT`. |
 | `COMPARE WITH` | Non supportato | Modificate il selettore dell&#39;ora o posizionate due widget su schede diverse. |
-| `FACET CASES` | Non supportato | Una colonna `count(*) FILTER (WHERE …)` per ogni caso (vedere [Esercitazione 3](#83-group-values-into-cases-with-filter)). |
-| `histogram()` | Non supportato | `FILTER` colonne con bucket (vedi [Esercitazione 3](#84-build-a-latency-histogram)). |
+| `FACET CASES` | Non supportato | Una colonna `count(*) FILTER (WHERE …)` per ogni caso (vedere [Esercitazione 3](../../tutorials/tutorial-3.md#group-values-into-cases-with-filter)). |
+| `histogram()` | Non supportato | `FILTER` colonne con bucket (vedi [Esercitazione 3](../../tutorials/tutorial-3.md#build-a-latency-histogram)). |
 | `uniques()` / `keyset()` | Non supportato | `FACET attr LIMIT n` elenca valori distinti. Le query di individuazione elencano le metriche e gli attributi compilati. |
 | `RLIKE` (regex) | Non supportato | `LIKE` / `NOT LIKE` con `%` e `_` caratteri jolly o `IN (…)`. |
 | Commenti (`--`, `//`, `/* */`) | Non supportato | Inserisci le note nel titolo del widget o in un widget **Testo**. |
