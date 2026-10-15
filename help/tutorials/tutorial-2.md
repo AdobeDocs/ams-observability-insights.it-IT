@@ -1,17 +1,15 @@
 ---
 title: 'Esercitazione 2: Controllare i dati'
 description: Scopri come filtrare, raggruppare e controllare i risultati delle query in Observability Insights.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
 workflow-type: tm+mt
-source-wordcount: '361'
+source-wordcount: '337'
 ht-degree: 0%
 ---
 
 ## Esercitazione 2: Controllare i dati {#tutorial-2-control-your-data}
 
 In questa esercitazione imparerai le funzioni e le clausole che trasformano i conteggi non elaborati in risposte: conteggi distinti, valori più recenti, percentuali, percentili, caratteri jolly, ordinamento e raggruppamento multidimensionale.
-
-**In questa esercitazione:** [7.1 uniqueCount](#71-count-distinct-values-with-uniquecount) · [7.2 più recente/meno recente](#72-find-the-latest-and-earliest-values) · [7.3 percentuale](#73-calculate-percentages) · [7.4 percentile](#74-understand-latency-with-percentile) · [7.5 Etichette](#75-make-results-readable-with-labels) · [7.6 Caratteri jolly ed elenchi](#76-match-patterns-and-lists) · [7.7 Ordinamento](#77-sort-and-rank-with-order-by) · [7.8 Più facet](#78-group-by-several-attributes) · [7.9 Finestre precedenti](#79-look-at-a-past-window)
 
 ### Conta valori distinti con `uniqueCount`
 
@@ -69,7 +67,7 @@ Le medie nascondono gli outlier. I percentili mostrano l’esperienza della magg
 SELECT percentile(duration, 50) AS p50, percentile(duration, 95) AS p95, percentile(duration, 99) AS p99 FROM Transaction TIMESERIES AUTO
 ```
 
->[!TIP]
+> **Suggerimento**
 >
 > p50, p95 e p99 di `Transaction.duration` sono forniti da rollup su lunghe finestre, quindi rimangono veloci per le visualizzazioni settimanali.
 
@@ -123,7 +121,7 @@ Oppure, prima di tutto, i servizi meno utilizzati:
 SELECT count(*) AS requests FROM Transaction FACET service ORDER BY requests ASC LIMIT 10
 ```
 
->[!TIP]
+> **Suggerimento**
 >
 > Nessun `HAVING`. Per trovare solo le operazioni &quot;occupate&quot;, classifica per `requests` e mantieni la N superiore, oppure aggiungi un `WHERE` che rimuove il rumore (ad esempio `WHERE http.method != 'OPTIONS'`).
 

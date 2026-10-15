@@ -1,17 +1,15 @@
 ---
 title: 'Esercitazione 1: Le prime query'
 description: Scrivere le prime query SQL sulla telemetria di Observability Insights.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 52cc24792c47727700428be58b5bbb2a5c7223d2
 workflow-type: tm+mt
-source-wordcount: '576'
+source-wordcount: '552'
 ht-degree: 0%
 ---
 
 ## Esercitazione 1: Le prime query {#tutorial-1-your-first-queries}
 
 SQL. In questa esercitazione scriverai le prime query, controllerai la finestra temporale, le tendenze del tracciamento, filtrerai e raggrupperai risultati e inserirai il primo grafico in una dashboard. Ogni passaggio si basa sul precedente.
-
-**In questa esercitazione:** [Prima di iniziare](#before-you-begin) · [6.1 Eventi query](#61-query-events-with-select-from-and-limit) · [6.2 Aggregato](#62-aggregate-your-data) · [6.3 Diversi aggregati](#63-return-several-aggregates-at-once) · [6.4 Intervallo temporale](#64-set-the-time-window) · [6.5 TIMESERIES](#65-plot-trends-with-timeseries) · [6.6 WHERE](#66-filter-with-where) · [6.7 FACET](#67-group-with-facet) · [6.8 Salva in un dashboard](#68-save-your-query-to-a-dashboard)
 
 ### Prima di iniziare
 
@@ -35,7 +33,7 @@ SELECT timestamp, service, name, duration FROM Transaction LIMIT 10
 
 Le righe sono ordinate in base alla prima colonna, in ordine decrescente, pertanto il posizionamento di `timestamp` offre le richieste più recenti nella parte superiore.
 
->[!NOTE]
+> **Nota**
 >
 > SQL non ha `SELECT *`. Gli attributi dell’elenco mantengono i risultati piccoli e leggibili. Il [dizionario dati](#data-dictionary) e il completamento automatico nell&#39;editor mostrano i dati disponibili.
 
@@ -69,7 +67,7 @@ Separa gli aggregati con virgole e denomina ciascuno con `AS`:
 SELECT count(*) AS requests, average(duration) AS avgMs, max(duration) AS maxMs FROM Transaction
 ```
 
->[!TIP]
+> **Suggerimento**
 >
 > Gli alias diventano intestazioni di colonna ed etichette di legenda e sono ciò a cui si fa riferimento in `ORDER BY`. Prendi l&#39;abitudine di denominare ogni aggregato.
 
@@ -89,7 +87,7 @@ SELECT count(*) AS requests FROM Transaction SINCE 2 days ago UNTIL 1 day ago
 
 Le unità possono essere `second`, `minute`, `hour`, `day` o `week`. La finestra può essere al massimo di 31 giorni.
 
->[!IMPORTANT]
+> **Importante**
 >
 > In **Esplora** e in **dashboard**, il **selettore ora** nella parte superiore della pagina controlla la finestra ed esegue l&#39;override di `SINCE`/`UNTIL`. Per esaminare un altro periodo, modificare il selettore. Il resto di questa guida lascia `SINCE` fuori dalle query del dashboard per questo motivo.
 
@@ -127,7 +125,7 @@ Utilizza `LIKE` con `%` per le corrispondenze parziali:
 SELECT count(*) AS contentRequests FROM Transaction WHERE urlPath LIKE '/content/%'
 ```
 
->[!NOTE]
+> **Nota**
 >
 > I valori stringa fanno distinzione tra maiuscole e minuscole e utilizzano apici: `'Error'`, non `"Error"` o `'error'`. Sostituisci `checkout` con un servizio del tuo tenant. Il passaggio successivo mostra come elencarli.
 

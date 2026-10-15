@@ -1,7 +1,7 @@
 ---
 title: Dizionario dei dati
 description: Fai riferimento alle entità e agli attributi disponibili per le query SQL di Observability Insights.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
 workflow-type: tm+mt
 source-wordcount: '598'
 ht-degree: 20%
@@ -14,8 +14,8 @@ Tutte le entità e gli attributi sui quali è possibile eseguire query. Il catal
 ### Entità di traccia
 
 | Entità | Contiene | Ambito fisso | Rollup |
-| ------------- | --------------------------------------------------------- | ---------------------------- | ------------------------------------------ |
-| `Transaction` | Richieste server in entrata | `kind = Server` | 1m / 5m / 1h ([Prestazioni](#performance)) |
+| ------------- | --------------------------------------------------------- | ---------------------------- | ------------------------------------------------------- |
+| `Transaction` | Richieste server in entrata | `kind = Server` | 1m / 5m / 1h ([Prestazioni](../operate/performance.md)) |
 | `AppRequest` | Richieste consumer di messaggi del server in entrata **e** | `kind IN (Server, Consumer)` | — |
 | `Span` | Ogni estensione (server, client, producer, consumer, internal) | — | — |
 
