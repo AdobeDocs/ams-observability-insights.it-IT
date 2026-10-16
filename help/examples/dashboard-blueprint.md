@@ -1,7 +1,7 @@
 ---
 title: Blueprint del dashboard
 description: Crea dashboard di Observability Insights utilizzando blueprint per il monitoraggio di applicazioni e infrastrutture.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
 workflow-type: tm+mt
 source-wordcount: '1324'
 ht-degree: 1%
@@ -644,7 +644,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS txBytesPerSec FROM NetworkTransmitRate FACET host TIMESERIES AUTO
 ```
 
-**W20 · I/O di rete totale per un host (formula)** — Widget formula, L, `bytes/s`, 12×4. Le formule non possono `FACET` e `rate()` devono avere un ambito in un host (vedi [Entità metriche curate](#53-curated-metric-entities)), pertanto fissare l&#39;host — sostituire `web-publish-01` con un nome host reale da W5.
+**W20 · I/O di rete totale per un host (formula)** — Widget formula, L, `bytes/s`, 12×4. Le formule non possono `FACET` e `rate()` devono avere un ambito in un host (vedi [Entità metriche curate](../references/data-dictionary.md#curated-metric-entities)), pertanto fissare l&#39;host — sostituire `web-publish-01` con un nome host reale da W5.
 
 Query `netRx`:
 
@@ -939,7 +939,7 @@ Formula:
 limit - used
 ```
 
-**W5 · Rapporto out/in rete per un host** — Formula, L (fissare l&#39;host; vedere [Entità metriche curate](#53-curated-metric-entities))
+**W5 · Rapporto out/in rete per un host** — Formula, L (fissare l&#39;host; vedere [Entità metriche curate](../references/data-dictionary.md#curated-metric-entities))
 
 Query `rx`:
 

@@ -1,7 +1,7 @@
 ---
 title: Documentazione del dashboard e delle query
 description: Documentazione di riferimento per query SQL e dashboard di Observability Insights.
-source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
+source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
 workflow-type: tm+mt
 source-wordcount: '10254'
 ht-degree: 4%
@@ -40,7 +40,7 @@ ht-degree: 4%
 |                 | [13. Risoluzione dei problemi](#13-troubleshooting) | Ogni messaggio di errore, cosa significa e come correggerlo |
 |                 | [14. Appendice](#14-appendix) | Limiti, formato del file di esportazione, foglio di riferimento di una pagina |
 
-&#x200B;# Introduzione
+# Introduzione
 
 ## &#x200B;1. Introduzione a SQL: lingua della telemetria
 
@@ -505,7 +505,7 @@ Una formula combina aritmeticamente 2-6 query SQL denominate, ad esempio `(error
 
 [↑ Torna all&#39;inizio](#top)
 
-&#x200B;# Riferimento
+# Riferimento
 
 ## &#x200B;4. Riferimento SQL
 
@@ -1194,7 +1194,7 @@ Ogni entità curata esegue il wrapping di una metrica OpenTelemetry con il filtr
 
 [↑ Torna all&#39;inizio](#top)
 
-&#x200B;# Tutorial
+# Tutorial
 
 ## &#x200B;6. Esercitazione 1: Le prime query
 
@@ -1828,7 +1828,7 @@ SELECT percentile(duration, 95) AS p95 FROM Transaction FACET host ORDER BY p95 
 
 [↑ Torna all&#39;inizio](#top)
 
-&#x200B;# Esempi
+# Esempi
 
 ## &#x200B;10. Query manuale
 
@@ -2957,7 +2957,7 @@ SELECT rate(value) AS rxBytesPerSec FROM NetworkReceiveRate FACET host TIMESERIE
 SELECT rate(value) AS txBytesPerSec FROM NetworkTransmitRate FACET host TIMESERIES AUTO
 ```
 
-**W20 · I/O di rete totale per un host (formula)** — Widget formula, L, `bytes/s`, 12×4. Le formule non possono `FACET` e `rate()` devono avere un ambito in un host (vedi [Entità metriche curate](#53-curated-metric-entities)), pertanto fissare l&#39;host — sostituire `web-publish-01` con un nome host reale da W5.
+**W20 · I/O di rete totale per un host (formula)** — Widget formula, L, `bytes/s`, 12×4. Le formule non possono `FACET` e `rate()` devono avere un ambito in un host (vedi [Entità metriche curate](data-dictionary.md#curated-metric-entities)), pertanto fissare l&#39;host — sostituire `web-publish-01` con un nome host reale da W5.
 
 Query `netRx`:
 
@@ -3245,7 +3245,7 @@ Formula:
 limit - used
 ```
 
-**W5 · Rapporto out/in rete per un host** — Formula, L (fissare l&#39;host; vedere [Entità metriche curate](#53-curated-metric-entities))
+**W5 · Rapporto out/in rete per un host** — Formula, L (fissare l&#39;host; vedere [Entità metriche curate](data-dictionary.md#curated-metric-entities))
 
 Query `rx`:
 
@@ -3385,7 +3385,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, count(*) FILTER (WHER
 
 [↑ Torna all&#39;inizio](#top)
 
-&#x200B;# Operare
+# Operare
 
 ## &#x200B;12. Prestazioni
 
@@ -3430,7 +3430,7 @@ I messaggi di errore vengono visualizzati nell&#39;editor quando **Convalida** o
 | `FACET and TIMESERIES require an aggregate query` | Query evento con FACET/TIMESERIES | Utilizza un aggregato. |
 | `FACET supports at most five attributes` | > 5 facet | Ridurre. |
 | `average requires a numeric attribute` | e.g. `average(service)` | Utilizzare `uniqueCount`/`latest` o un attributo numerico. |
-| `rate requires TIMESERIES` / `rate is only available for counter measures` | `rate()` senza TIMESERIES o su un misuratore | Aggiungi `TIMESERIES AUTO`; utilizza un&#39;entità contatore ✔ ([Entità metriche curate](#53-curated-metric-entities)); per i contatori utilizza `derivative()`. |
+| `rate requires TIMESERIES` / `rate is only available for counter measures` | `rate()` senza TIMESERIES o su un misuratore | Aggiungi `TIMESERIES AUTO`; utilizza un&#39;entità contatore ✔ ([Entità metriche curate](data-dictionary.md#curated-metric-entities)); per i contatori utilizza `derivative()`. |
 | `rate cannot be combined with other aggregates` | Più elementi con `rate()` | Un `rate()` per widget; combinare con una formula. |
 | `percentOfTotal cannot be combined with TIMESERIES` | — | Rimuovi SERIE TEMPORALI. |
 | `apdex requires an entity with a status attribute` | `apdex` su un&#39;entità metrica | Usa `Transaction`/`Span`/`AppRequest`. |

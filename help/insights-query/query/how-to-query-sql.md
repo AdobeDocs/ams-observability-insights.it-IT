@@ -1,7 +1,7 @@
 ---
 title: Eseguire query con SQL
 description: Scopri come scrivere ed eseguire query SQL in Observability Insights.
-source-git-commit: 148bf6480461a0109b221b8e7c2f9ab2035a7d68
+source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
 workflow-type: tm+mt
 source-wordcount: '557'
 ht-degree: 0%
@@ -43,7 +43,7 @@ In questo modo vengono conteggiate le richieste per servizio, il che mostra qual
 
 > **Importante**
 >
-> **Individua prima della compilazione.** La disponibilità degli attributi dipende dalla strumentazione di ciascun servizio. Eseguire le [query di individuazione](#101-data-discovery) su un nuovo tenant per vedere quali servizi, host, attributi e metriche contengono effettivamente i dati.
+> **Individua prima della compilazione.** La disponibilità degli attributi dipende dalla strumentazione di ciascun servizio. Eseguire le [query di individuazione](../../examples/query-cookbook.md#data-discovery) su un nuovo tenant per vedere quali servizi, host, attributi e metriche contengono effettivamente i dati.
 
 ### Esecuzione di una query
 
