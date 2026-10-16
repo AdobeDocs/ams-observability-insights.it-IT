@@ -1,17 +1,15 @@
 ---
 title: Query manuale
 description: Utilizza le formule di query SQL per analizzare la telemetria di applicazioni e infrastrutture in Observability Insights.
-source-git-commit: 143a9567da06f0137ef690795cfbc41bda1780ca
+source-git-commit: ae94813d8db77f7d5795add161a7fbfd7427c050
 workflow-type: tm+mt
-source-wordcount: '580'
+source-wordcount: '554'
 ht-degree: 0%
 ---
 
 ## Query manuale {#query-cookbook}
 
 Il manuale è una libreria di query pronte all’uso, raggruppate per argomento. Ogni query è preceduta dal tipo di grafico più adatto, in **bold**. Le clausole temporali vengono ignorate perché la finestra è controllata dal selettore ore.
-
-**In questo documento:** [10.1 Individuazione dati](#101-data-discovery) · [10.2 Throughput](#102-throughput) · [10.3 Latenza](#103-latency) · [10.4 Errori](#104-errors) · [10.5 Apdex](#105-apdex--user-experience) · [10.6 Servizi e host](#106-services-hosts--instances) · [10.7 Dipendenze](#107-downstream-dependencies) · [10.8 AEM](#108-aem-adobe-experience-manager) · [10.9 Infrastruttura](#109-infrastructure) · [10.10 JVM](#1010-jvm--runtime)
 
 >[!TIP]
 >
