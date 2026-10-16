@@ -1,9 +1,9 @@
 ---
 title: 'Esercitazione 1: Le prime query'
 description: Scrivere le prime query SQL sulla telemetria di Observability Insights.
-source-git-commit: 52cc24792c47727700428be58b5bbb2a5c7223d2
+source-git-commit: 09c8edf64e744ff0c16acd0d5905fc6796490f82
 workflow-type: tm+mt
-source-wordcount: '552'
+source-wordcount: '549'
 ht-degree: 0%
 ---
 
@@ -33,7 +33,7 @@ SELECT timestamp, service, name, duration FROM Transaction LIMIT 10
 
 Le righe sono ordinate in base alla prima colonna, in ordine decrescente, pertanto il posizionamento di `timestamp` offre le richieste più recenti nella parte superiore.
 
-> **Nota**
+>[!NOTE]
 >
 > SQL non ha `SELECT *`. Gli attributi dell’elenco mantengono i risultati piccoli e leggibili. Il [dizionario dati](#data-dictionary) e il completamento automatico nell&#39;editor mostrano i dati disponibili.
 
@@ -67,7 +67,7 @@ Separa gli aggregati con virgole e denomina ciascuno con `AS`:
 SELECT count(*) AS requests, average(duration) AS avgMs, max(duration) AS maxMs FROM Transaction
 ```
 
-> **Suggerimento**
+>[!TIP]
 >
 > Gli alias diventano intestazioni di colonna ed etichette di legenda e sono ciò a cui si fa riferimento in `ORDER BY`. Prendi l&#39;abitudine di denominare ogni aggregato.
 
@@ -125,7 +125,7 @@ Utilizza `LIKE` con `%` per le corrispondenze parziali:
 SELECT count(*) AS contentRequests FROM Transaction WHERE urlPath LIKE '/content/%'
 ```
 
-> **Nota**
+>[!NOTE]
 >
 > I valori stringa fanno distinzione tra maiuscole e minuscole e utilizzano apici: `'Error'`, non `"Error"` o `'error'`. Sostituisci `checkout` con un servizio del tuo tenant. Il passaggio successivo mostra come elencarli.
 
