@@ -40,7 +40,7 @@ ht-degree: 4%
 |                 | [13. Risoluzione dei problemi](#13-troubleshooting) | Ogni messaggio di errore, cosa significa e come correggerlo |
 |                 | [14. Appendice](#14-appendix) | Limiti, formato del file di esportazione, foglio di riferimento di una pagina |
 
-# Introduzione
+&#x200B;# Introduzione
 
 ## &#x200B;1. Introduzione a SQL: lingua della telemetria
 
@@ -505,7 +505,7 @@ Una formula combina aritmeticamente 2-6 query SQL denominate, ad esempio `(error
 
 [↑ Torna all&#39;inizio](#top)
 
-# Riferimento
+&#x200B;# Riferimento
 
 ## &#x200B;4. Riferimento SQL
 
@@ -1194,7 +1194,7 @@ Ogni entità curata esegue il wrapping di una metrica OpenTelemetry con il filtr
 
 [↑ Torna all&#39;inizio](#top)
 
-# Tutorial
+&#x200B;# Tutorial
 
 ## &#x200B;6. Esercitazione 1: Le prime query
 
@@ -1828,7 +1828,7 @@ SELECT percentile(duration, 95) AS p95 FROM Transaction FACET host ORDER BY p95 
 
 [↑ Torna all&#39;inizio](#top)
 
-# Esempi
+&#x200B;# Esempi
 
 ## &#x200B;10. Query manuale
 
@@ -3385,7 +3385,7 @@ SELECT count(*) AS calls, percentile(duration, 95) AS p95, count(*) FILTER (WHER
 
 [↑ Torna all&#39;inizio](#top)
 
-# Operare
+&#x200B;# Operare
 
 ## &#x200B;12. Prestazioni
 
