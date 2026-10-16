@@ -1,9 +1,9 @@
 ---
 title: Eseguire query con SQL
 description: Scopri come scrivere ed eseguire query SQL in Observability Insights.
-source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
+source-git-commit: 898e474e3ab7914f8de2df286c67ac046d3b22b0
 workflow-type: tm+mt
-source-wordcount: '557'
+source-wordcount: '555'
 ht-degree: 0%
 ---
 
@@ -15,7 +15,7 @@ Prima di usare uno strumento, è utile conoscerne il funzionamento. Questo docum
 
 Il modo migliore per utilizzare SQL consiste nell&#39;aprire **Esplora** e provarlo con i propri dati.
 
-> **Suggerimento**
+>[!TIP]
 >
 > SQL è di sola lettura. Non può modificare o eliminare dati e ogni query ha l’ambito del tuo tenant.
 
@@ -92,6 +92,6 @@ Ogni query restituisce una delle quattro forme. La forma determina quali grafici
 | **Esplora** | Selettore temporale globale. `SINCE`/`UNTIL` vengono ignorati quando è attivo un intervallo del selettore. |
 | **API senza intervallo esplicito** | `SINCE`/`UNTIL` nella query, impostazione predefinita: ultima ora. |
 
-> **Nota**
+>[!NOTE]
 >
 > Poiché il selettore è vincente nei dashboard e in Esplora, questa guida in genere esclude `SINCE` dalle query del dashboard. È sempre necessario definire un selettore ora per le query.

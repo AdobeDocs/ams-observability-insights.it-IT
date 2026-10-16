@@ -1,9 +1,9 @@
 ---
 title: 'Esercitazione 2: Controllare i dati'
 description: Scopri come filtrare, raggruppare e controllare i risultati delle query in Observability Insights.
-source-git-commit: 91a61d33010192cedce7d40a45ffe86f32e4824b
+source-git-commit: 09c8edf64e744ff0c16acd0d5905fc6796490f82
 workflow-type: tm+mt
-source-wordcount: '337'
+source-wordcount: '336'
 ht-degree: 0%
 ---
 
@@ -67,7 +67,7 @@ Le medie nascondono gli outlier. I percentili mostrano l’esperienza della magg
 SELECT percentile(duration, 50) AS p50, percentile(duration, 95) AS p95, percentile(duration, 99) AS p99 FROM Transaction TIMESERIES AUTO
 ```
 
-> **Suggerimento**
+>[!TIP]
 >
 > p50, p95 e p99 di `Transaction.duration` sono forniti da rollup su lunghe finestre, quindi rimangono veloci per le visualizzazioni settimanali.
 
