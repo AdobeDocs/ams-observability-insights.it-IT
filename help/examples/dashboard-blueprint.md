@@ -1,28 +1,15 @@
 ---
 title: Blueprint del dashboard
 description: Crea dashboard di Observability Insights utilizzando blueprint per il monitoraggio di applicazioni e infrastrutture.
-source-git-commit: 873e7b9f279c3276fc0197969d667d40d022968a
+source-git-commit: 94e108d029b04bf4f04aec3fb8b949705c4005e1
 workflow-type: tm+mt
-source-wordcount: '1324'
+source-wordcount: '1196'
 ht-degree: 1%
 ---
 
 ## Blueprint del dashboard {#dashboard-blueprints}
 
 Ogni blueprint è una dashboard completa e complessa. Elenca l&#39;obiettivo, il layout della scheda e della sezione e ogni widget con il relativo tipo di grafico, l&#39;unità, le soglie, le dimensioni e la query. Le dimensioni sono `width×height` nella griglia a 12 colonne. Genera ciascuno dall&#39;alto verso il basso, quindi trascina per regolare.
-
-| Blueprint | Pubblico | In evidenza |
-| ------------------------------------------------------------------------------------ | --------------------- | ---------------------------------------------------------------------------------- |
-| [11.1 Segnali d&#39;oro / SLO](#111-golden-signals--slo-board) | SRE, on-call | Tessere KPI con soglie, Apdex, % errore, saturazione |
-| [11.2 - Triage errori](#112-error-triage-board) | On-call | Classi di errore, punti attivi 5xx, richieste non riuscite con ID di traccia |
-| [Approfondimento sulla latenza 11.3](#113-latency-deep-dive-board) | Ingegneri delle prestazioni | Percentili, bucket di latenza, variabilità, composizione transazione, tracce più lente |
-| [11.4 Dipendenze a valle](#114-downstream-dependencies-board) | Proprietari del servizio | HTTP, DB, messaggistica, RPC in uscita |
-| [11.5 AEM Author / Publish / Dispatcher](#115-aem-author--publish--dispatcher-board) | Team di AEM | Sezioni per livello, Sling/JSP/JCR, carico del dispatcher |
-| [11.6 Capacità infrastruttura](#116-infrastructure-capacity-board) | Piattaforma/capacità | modalità CPU, memoria, disco, velocità di rete, formule |
-| [11.7 Integrità JVM](#117-jvm-health-board) | Team Java | % heap formule, heap per host e pool, thread, JVM CPU |
-| [11,8 Executive/NOC wall](#118-executive--noc-wall-board) | NOC, leadership | Tessere KPI, formula di disponibilità, traffico per livello, nota SLO |
-| [Rapporti 11,9 e Headroom](#119-ratios--headroom-board-formula-showcase) | Tutti | Widget formula |
-| [11.10 Esplora servizi](#1110-service-explorer-variable-driven) | Ogni team | Variabile, riutilizzabile |
 
 **Legenda Grafico:** **N** = Numero, **L** = Linea, **A** = Area, **B** = Barra, **P** = Torta, **T** = Tabella.
 
